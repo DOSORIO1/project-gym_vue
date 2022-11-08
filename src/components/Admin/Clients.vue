@@ -1,56 +1,65 @@
 <template>
     <div class="contenedor">
         <article>
-            <button id="btn" type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                data-bs-target="#modal-create">
-                <img id="btns" src="../../assets/img/edit.png" />
-            </button>
 
-            <h1>Reguistro de clientes</h1>
-            <table id="table" class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>age</th>
-                        <th>weight</th>
-                        <th>nivel</th>
-                        <th>email</th>
-                        <th>injuries</th>
-                        <th>start date</th>
-                        <th>finish date</th>
-                        <th>payment period</th>
-                        <th>price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="c in clients" :key="'clients' + c.id">
-                        <td>{{ c.name }}</td>
-                        <td>{{ c.age }}</td>
-                        <td>{{ c.weight }}</td>
-                        <td>{{ c.nivel }}</td>
-                        <td>{{ c.email }}</td>
-                        <td>{{ c.injures }}</td>
-                        <td>{{ c.start_date }}</td>
-                        <td>{{ c.finish_date }}</td>
-                        <td>{{ c.rates }}</td>
-                        <td>{{ c.price }}</td>
-                        <td>{{ c.companies_id }}</td>
 
-                        <td>
-                            <button type="button" class="btn btn" data-bs-toggle="modal" data-bs-target="#modal-edit"
-                                @click="edit_clients(c)">
-                                <img id="btns" src="../../assets/img/edit.png" />
-                            </button>
-                        </td>
-                        <td>
+            <div class="details">
+                <div class="recentorders">
+                    <div class="cardHeader">
+                        <h2>Reguistro de clientes</h2>
+                        <button id="btn" type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#modal-create">
+                            <i class="bi bi-person-plus-fill"></i>
+                        </button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Age</td>
+                                <td>Weight</td>
+                                <td>Nivel</td>
+                                <td>Email</td>
+                                <td>Injuries</td>
+                                <td>Start Date</td>
+                                <td>Finish Date</td>
+                                <td>Payment Period</td>
+                                <td>Price</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="c in clients" :key="'clients' + c.id">
+                                <td>{{ c.name }}</td>
+                                <td>{{ c.age }}</td>
+                                <td>{{ c.weight }}</td>
+                                <td>{{ c.nivel }}</td>
+                                <td>{{ c.email }}</td>
+                                <td>{{ c.injures }}</td>
+                                <td>{{ c.start_date }}</td>
+                                <td>{{ c.finish_date }}</td>
+                                <td>{{ c.rates }}</td>
+                                <td>{{ c.price }}</td>
+                                <td>{{ c.companies_id }}</td>
 
-                            <button type="button" class="btn" @click="borrar(c.id)">
-                                <img id="btns" src="../../assets/img/delete.png" />
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                <td>
+                                    <button type="button" class="btn btn" data-bs-toggle="modal"
+                                        data-bs-target="#modal-edit" @click="edit_clients(c)">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                </td>
+                                <td>
+
+                                    <button type="button" class="btn" @click="borrar(c.id)">
+                                        <i class="bi bi-trash3"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
         </article>
     </div>
     <!-- Modal crear-->
@@ -472,25 +481,12 @@ export default {
             }
         },
 
-        async destroy() {
-            // const modal1 = document.getElementById("modal-edit");
-            //     const modal2 = document.getElementById("modal-edit-rates");
-            //     this.modal_edit = bootstrap.Modal.getInstance(modal1);
-            //     this.modal_edit_rates = bootstrap.Modal.getInstance(modal2);
-
-            try{
-                const id = this.user;
-                const res = await this.axios.delete('/api/clients/${id}', {
-                    Headers: {
-                        authorization: "bearer " + localStorage.token,
-                    },
-                })
-            }catch{
+        async borrar(id) {
+            console.log("rol :" + id);
+            if (confirm("Seguro de eliminar?")) {
+                await this.axios.delete("api/clients/" + id);
                 this.get_clients();
-                this.reset_form();
-
             }
-
         },
     },
 };

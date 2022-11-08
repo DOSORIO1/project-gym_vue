@@ -13,60 +13,113 @@ article {
 article::-webkit-scrollbar {
     display: none;
 }
-table,
-th,
-td {
-   
-   
+.details .recentorders {
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+
+  }
+  /* .details .recentorders{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } */
+  
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .cardHeader h2 {
+    font-weight: 600;
+    color: #287bff;
+  }
+  
+  .details table {
+    width: 100%;
     border-collapse: collapse;
-    background: rgba(255, 255, 255, 0.425);
-}
-th,
-td {
-    padding: 4px;
-}
-
-table {
-    text-align: center;
-    margin: 1rem;
-
-}
-#btns {
-    width: 25px;
-    margin: 0%;
-    padding: 0%;
-}
-#btn {
-    display: flex;
-    margin: 1rem;
-}
-h1 {
-    font-family: titulo;
-    display: flex;
-    justify-content: center;
-    color: rgb(14, 14, 14);
-    margin-top: 20px;
-    text-shadow: 5px 3px 8px rgb(104, 103, 103);
-}
-.form-tarifas {
-    display: flex;
-}
-#izq {
-    margin-left: 1rem;
-}
-#dere {
-    margin-left: 1rem;
-}
-.modal-content {
-    background: rgba(255, 255, 255, 0.705);
-    background-image: url("../src/assets/img/qw.jpg");
-    background-size: cover;
-    background-position: top;
-    background-position: center;
-}
-#article {
-    width: 180px;
+    margin: 10px;
+    
+  }
+  
+  .details table thead td {
+    font-weight: 600;
+  }
+  
+  .details .recentorders table tr {
+    color: #222;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .details .recentorders table tbody tr:hover{
+    background: #287bff;
+    color: #fff;
+  }
+  .details .recentorders table tr td{
     padding: 10px;
-    margin-left: 10px;
-    background-color: rgb(233, 233, 233);
-}
+  }
+  .details .recentorders table tr td:last-child{
+    text-align: end;
+  }
+  .details .recentorders table tr td:nth-child(2){
+    text-align: end;
+  }
+  .details .recentorders table tr td:nth-child(3){
+    text-align: center;
+  }
+  
+  .recencustomers{
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+  }
+  .recencustomers .imgBx{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .recencustomers .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .recencustomers table tr:hover{
+    background: #0864f9;
+    color: #fff;
+  }
+  .recencustomers table tr td{
+    padding: 12px 10px;
+  }
+  .recencustomers table tr td h4{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2em;
+  }
+  .recencustomers table tr td h4 span{
+    font-size: 14px;
+    color: #999;
+  }
+  .recencustomers table tr:hover{
+    background: #287bff;
+    color: #fff;
+  }
+  .recencustomers table tr:hover td h4 span{
+    color: #fff;
+  }
+  .btn{ 
+    font-size: 25px;
+    
+  }
+  

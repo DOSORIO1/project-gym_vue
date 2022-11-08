@@ -130,17 +130,22 @@
   left: 260px;
   background: #fff;
   transition: 0.9s;
- 
+  /* background-image: url("../src/assets/img/foto.jpg");
+  background-size: cover;
+  background-position: top; */
   height: 100vh;
   
 }
 
 .main1.actives {
   position: relative;
-  width: 95.8%;
+  width: 93.5%;
   left: 80px;
   background: #fff;
   transition: 1s;
+  /* background-image: url("../src/assets/img/foto.jpg");
+  background-size: cover;
+  background-position: top; */
   height: 100vh;
 }
 .fondo{

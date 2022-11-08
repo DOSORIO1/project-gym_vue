@@ -1,34 +1,74 @@
 <template>
-  <div class="contenedor">
-    <article id="tab4">
-
-      <h1>Asistencia de los clientes</h1>
-      <div id="input"> 
-        <input type="date" name="injures"  class="form-control" id="floatingInput9"
-        placeholder="" />
-      <input type="date" name="injures"  class="form-control" id="floatingInput9"
-        placeholder="" />
+  <div class="details">
+    <div class="recentorders">
+      <div class="cardHeader">
+        <h2>Recent Order</h2>
+        <div> <input type="date" class="form-control">
+          <input type="date" class="form-control">
+        </div>
       </div>
-      
       <table>
         <thead>
           <tr>
-            <th>nombre</th>
-            <th>hora</th>
-            <th>fecha</th>
-            <th>asistencias</th>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Payment</td>
+            <td>Status</td>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="a in asistencias" :key="'asistencias' + a.id">
-            <td>{{ a.name }}</td>
-            <td>{{ a.time }}</td>
-            <td>{{ a.date }}</td>
-            <td>{{ a.asiste }}</td>
+          <tr>
+            <td>Star refrigeration</td>
+            <td>$1200</td>
+            <td>paid</td>
+            <td><span class="status delivered">Delivered</span></td>
           </tr>
+          <tr>
+            <td>Star refrigeration</td>
+            <td>$1200</td>
+            <td>paid</td>
+            <td><span class="status pending">Pending</span></td>
+          </tr>
+          <tr>
+            <td>Star refrigeration</td>
+            <td>$1200</td>
+            <td>paid</td>
+            <td><span class="status return">Return</span></td>
+          </tr>
+          <tr>
+            <td>Star refrigeration</td>
+            <td>$1200</td>
+            <td>paid</td>
+            <td><span class="status inprogress">InProgress</span></td>
+          </tr>
+          <tr>
+            <td>Star refrigeration</td>
+            <td>$1200</td>
+            <td>paid</td>
+            <td><span class="status delivered">Delivered</span></td>
+          </tr>
+          <tr>
+            <td>Star refrigeration</td>
+            <td>$1200</td>
+            <td>paid</td>
+            <td><span class="status pending">Pending</span></td>
+          </tr>
+          <tr>
+            <td>Star refrigeration</td>
+            <td>$1200</td>
+            <td>paid</td>
+            <td><span class="status return">Return</span></td>
+          </tr>
+          <tr>
+            <td>Star refrigeration</td>
+            <td>$1200</td>
+            <td>paid</td>
+            <td><span class="status inprogress">InProgress</span></td>
+          </tr>
+
         </tbody>
       </table>
-    </article>
+    </div>
   </div>
 </template>
 <style scoped>
