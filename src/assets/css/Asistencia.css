@@ -40,7 +40,7 @@ h1 {
   font-family: titulo;
   display: flex;
   justify-content: center;
-  color: aliceblue;
+  color: rgb(0, 0, 0);
   margin-top: 20px;
   text-shadow: 5px 3px 8px rgb(104, 103, 103);
 }
@@ -52,6 +52,9 @@ h1 {
 }
 #dere {
   margin-left: 1rem;
+}
+#input{
+  width: 150px;
 }
 
 

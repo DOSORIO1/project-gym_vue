@@ -7,7 +7,7 @@
             </button>
 
             <h1>Reguistro de clientes</h1>
-            <table id="table">
+            <table id="table" class="table table-hover">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -472,12 +472,25 @@ export default {
             }
         },
 
-        async borrar(id) {
-            console.log("rol :" + id);
-            if (confirm("Seguro de eliminar?")) {
-                await this.axios.delete("api/clients/" + id);
+        async destroy() {
+            // const modal1 = document.getElementById("modal-edit");
+            //     const modal2 = document.getElementById("modal-edit-rates");
+            //     this.modal_edit = bootstrap.Modal.getInstance(modal1);
+            //     this.modal_edit_rates = bootstrap.Modal.getInstance(modal2);
+
+            try{
+                const id = this.user;
+                const res = await this.axios.delete('/api/clients/${id}', {
+                    Headers: {
+                        authorization: "bearer " + localStorage.token,
+                    },
+                })
+            }catch{
                 this.get_clients();
+                this.reset_form();
+
             }
+
         },
     },
 };
