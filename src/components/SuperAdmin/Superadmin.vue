@@ -43,7 +43,7 @@
             <span class="icon">
               <ion-icon name="bag-check-outline"></ion-icon>
             </span>
-            <router-link class="title" to="/Admin/Sales">companies deudoras</router-link>
+            <router-link class="title" to="/Admin/Sales">deudoras</router-link>
           </a>
         </li>
         <li>

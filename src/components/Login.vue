@@ -5,15 +5,15 @@
                 <form action="#">
                     <h1>Create Account</h1>
                     <span>or use your email for registration</span>
-                    <input type="text" name="name" v-model="form.name" placeholder="name"/>
+                    <input type="text" name="name" v-model="form2.name" placeholder="name"/>
                     <span v-if="errors.name">{{ errors.name[0] }}</span>
-                    <input type="text" name="email" v-model="form.email" placeholder="Email" />
+                    <input type="text" name="email" v-model="form2.email" placeholder="Email" />
                     <span v-if="errors.email">{{ errors.email[0] }}</span>
 
-                    <input type="password" name="password" v-model="form.password" placeholder="Password" />
+                    <input type="password" name="password" v-model="form2.password" placeholder="Password" />
                     <span v-if="errors.password">{{ errors.password[0] }}</span>
 
-                    <input type="password" name="password" v-model="form.password_confirmation" placeholder="confirm Password" />
+                    <input type="password" name="password" v-model="form2.password_confirmation" placeholder="confirm Password" />
                     <span v-if="errors.password_confirmation">{{ errors.password_confirmation[0] }}</span>
 
                     <button  @click="register()" type="button">Sign Up</button>
@@ -138,7 +138,7 @@ export default {
                 switch (role) {
                     case 1:
                         this.$router.push({
-                            path: "/Admin/Home",
+                            path: "/Superadmin/Perfilsuper",
                             // params: {
                             // token:rs.data.token,
                             // }
@@ -174,13 +174,13 @@ export default {
                 localStorage.user = JSON.stringify(rs.data.user);
             } catch (e) {
                 this.errors = {},
-                    this.message = null;
+                this.message = null;
 
-                if (e.response.data.message)
+                if (e.response.data.errors)
                     this.errors = e.response.data.errors;
-
+                    
                 else (e.response.data.message)
-                this.message = e.response.data.message;
+                    this.message = e.response.data.message;
 
 
                 console.log(e);
@@ -201,7 +201,7 @@ export default {
             }
             catch (e) {
 
-                this.errors = {},
+               this.errors = {},
                     this.message = null;
 
                 if (e.response.data.errors)

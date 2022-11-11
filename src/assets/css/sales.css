@@ -1,0 +1,10 @@
+.container-table{
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    
+}
+table{
+    width: 98%;
+    margin: 10px;
+}

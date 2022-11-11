@@ -124,9 +124,12 @@
 
 /* MAIN */
 .main1 {
-  overflow: hidden;
+  display: flex;
   position: absolute;
-  width: 79%;
+  flex-flow: column;
+  overflow: hidden;
+  width: calc( 100vw - 260px);
+  border: solid 1px rgb(20, 241, 0);
   left: 260px;
   background: #fff;
   transition: 0.9s;

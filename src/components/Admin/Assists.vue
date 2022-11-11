@@ -11,60 +11,20 @@
         <thead>
           <tr>
             <td>Name</td>
-            <td>Price</td>
-            <td>Payment</td>
-            <td>Status</td>
+            <td>time</td>
+            <td>date</td>
+            <td>asiste</td>
+           
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Star refrigeration</td>
-            <td>$1200</td>
-            <td>paid</td>
-            <td><span class="status delivered">Delivered</span></td>
+          <tr v-for="a in asistencias" :key="'asistencias' + a.id">
+            <td>{{a.name}}</td>
+            <td>${{a.date}}</td>
+            <td>{{a.time}}</td>
+            <td><span class="status delivered">{{a.asiste}}</span></td>
           </tr>
-          <tr>
-            <td>Star refrigeration</td>
-            <td>$1200</td>
-            <td>paid</td>
-            <td><span class="status pending">Pending</span></td>
-          </tr>
-          <tr>
-            <td>Star refrigeration</td>
-            <td>$1200</td>
-            <td>paid</td>
-            <td><span class="status return">Return</span></td>
-          </tr>
-          <tr>
-            <td>Star refrigeration</td>
-            <td>$1200</td>
-            <td>paid</td>
-            <td><span class="status inprogress">InProgress</span></td>
-          </tr>
-          <tr>
-            <td>Star refrigeration</td>
-            <td>$1200</td>
-            <td>paid</td>
-            <td><span class="status delivered">Delivered</span></td>
-          </tr>
-          <tr>
-            <td>Star refrigeration</td>
-            <td>$1200</td>
-            <td>paid</td>
-            <td><span class="status pending">Pending</span></td>
-          </tr>
-          <tr>
-            <td>Star refrigeration</td>
-            <td>$1200</td>
-            <td>paid</td>
-            <td><span class="status return">Return</span></td>
-          </tr>
-          <tr>
-            <td>Star refrigeration</td>
-            <td>$1200</td>
-            <td>paid</td>
-            <td><span class="status inprogress">InProgress</span></td>
-          </tr>
+          
 
         </tbody>
       </table>

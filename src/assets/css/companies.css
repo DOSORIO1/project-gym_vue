@@ -1,0 +1,40 @@
+
+.contenedor-cards{
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 10px;
+    
+}
+
+.scroll{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    overflow: scroll;
+}
+header{
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.btn{
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+ion-icon{
+    margin-top: 3px;
+}
+.card{
+    height: max-content;
+    margin-left: 20px;
+}
+.bottt{
+    display: flex;
+    justify-content: space-around;
+}
