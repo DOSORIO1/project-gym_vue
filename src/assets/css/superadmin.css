@@ -92,14 +92,12 @@ ul li.hovered a::before {
 main {
     width: 93.5%;
     transition: 1s;
-    background-size: cover;
-    background-position: top;
     height: 100vh;
   }
 
 main {
   display: flex;
-  z-index: 100;
+  
   flex-flow: column;
   flex: 1;
   border: solid 1px rgb(0, 241, 72) !important;

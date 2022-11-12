@@ -710,7 +710,7 @@ export default {
             try {
                 const id = this.client.id;
                 
-                const res = await this.axios.delete(`/api/clients/${this.form.users_id}`, {
+                const res = await this.axios.delete(`/api/clients/${this.form}`, {
                     headers: {
                         Authorization: "Bearer " + localStorage.token,
                     },

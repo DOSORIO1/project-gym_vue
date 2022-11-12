@@ -1,8 +1,6 @@
 <template>
   <div class="container-body">
     <aside class="aside">
-      
-
       <ul>
         <li>
           <a href="#">
