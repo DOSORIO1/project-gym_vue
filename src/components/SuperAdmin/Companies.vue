@@ -115,7 +115,7 @@ export default {
       this.prepare_elements("modal-create");
 
       try {
-        let response = await this.axios.post("/api/companies", this.form);
+        let response = await this.axios.post("/api/companies/", this.form);
         this.get_companies();
         this.modal.hide();
       } catch (e) {

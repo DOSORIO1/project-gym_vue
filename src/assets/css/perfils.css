@@ -11,6 +11,7 @@
     background-image: url("../src/assets/img/qw.jpg");
     background-size: cover;
     background-position: top;
+    z-index: 1;
    
     width: 100%;
     height: 30%;

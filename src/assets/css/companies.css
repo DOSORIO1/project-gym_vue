@@ -1,19 +1,25 @@
 
+.contenedor{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    flex-flow: column;
+}
+
 .contenedor-cards{
     display: flex;
     flex-flow: column;
-    height: 100vh;
-    width: 100%;
-    flex-wrap: wrap;
     padding: 10px;
+    height: 100%;
+    overflow: scroll;
     
 }
+
 
 .scroll{
     display: flex;
     flex-wrap: wrap;
-    height: 100%;
-    overflow: scroll;
+    
 }
 header{
     padding-top: 20px;
