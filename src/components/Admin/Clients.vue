@@ -433,6 +433,7 @@ export default {
         password: "",
         password_confirmation: "",
         total: 0,
+        
       };
     },
 
