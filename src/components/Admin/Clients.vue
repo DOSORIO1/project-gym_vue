@@ -1,257 +1,158 @@
 <template>
-  
-    <div class="details">
-      <div class="recentorders">
-        <div class="cardHeader">
-          <h2>Reguistro de clientes</h2>
-          <button
-            id="btn"
-            type="button"
-            class="btn btn-secondary"
-            data-bs-toggle="modal"
-            data-bs-target="#modal-create"
-          >
-            <i class="bi bi-person-plus-fill"></i>
-          </button>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <td>photo</td>
-              <td>Name</td>
-              <td>Age</td>
-              <td>Weight</td>
-              <td>Nivel</td>
-              <td>Email</td>
-              <td>Injuries</td>
-              <td>Start Date</td>
-              <td>Finish Date</td>
-              <td>Payment Period</td>
-              <td>Price</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="c in clients" :key="'clients' + c.id">
-              <td style="width: 200px;" > <img style="width: 200px; border-radius: 10px; width: 200px;"
-              
-              :src="c.image"
-              class="img-fluid rounded-start"
-              alt="..."
-            /></td>
-              <td>{{ c.name }}</td>
-              <td>{{ c.age }}</td>
-              <td>{{ c.weight }}</td>
-              <td>{{ c.nivel }}</td>
-              <td>{{ c.email }}</td>
-              <td>{{ c.injures }}</td>
-              <td>{{ c.start_date }}</td>
-              <td>{{ c.finish_date }}</td>
-              <td>{{ c.rates }}</td>
-              <td>{{ c.price }}</td>
-              <td>{{ c.companies_id }}</td>
 
-              <td>
-                <button
-                  type="button"
-                  class="btn btn"
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal-edit"
-                  @click="edit_clients(c)"
-                >
-                  <i class="bi bi-pencil-square"></i>
-                </button>
-              </td>
-              <td>
-                <button type="button" class="btn" @click="destroy(c.id)">
-                  <i class="bi bi-trash3"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+  <div class="details">
+    <div class="recentorders">
+      <div class="cardHeader">
+        <h2>Reguistro de clientes</h2>
+        <button id="btn" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-create">
+          <i class="bi bi-person-plus-fill"></i>
+        </button>
       </div>
+      <table>
+        <thead>
+          <tr>
+            <td>photo</td>
+            <td>Name</td>
+            <td>Age</td>
+            <td>Weight</td>
+            <td>Nivel</td>
+            <td>Email</td>
+            <td>Injuries</td>
+            <td>Start Date</td>
+            <td>Finish Date</td>
+            <td>Payment Period</td>
+            <td>Price</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="c in clients" :key="'clients' + c.id">
+            <td style="width: 200px;"> <img style="width: 200px; border-radius: 10px; width: 200px;" :src="c.image"
+                class="img-fluid rounded-start" alt="..." /></td>
+            <td>{{ c.name }}</td>
+            <td>{{ c.age }}</td>
+            <td>{{ c.weight }}</td>
+            <td>{{ c.nivel }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.injures }}</td>
+            <td>{{ c.fecha_inicio }}</td>
+            <td>{{ c.fecha_final }}</td>
+            <td>{{ c.rates }}</td>
+            <td>{{ c.price }}</td>
+            <td>{{ c.companies_id }}</td>
+
+            <td>
+              <button type="button" class="btn btn" data-bs-toggle="modal" data-bs-target="#modal-edit"
+                @click="edit_clients(c)">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+            </td>
+            <td>
+
+              <span @click="edit_clients(c)" class="material-symbols-outlined" data-bs-toggle="modal"
+                data-bs-target="#deleteUserModal">
+                delete
+              </span>
+              <!-- <button type="button" class="btn" @click="destroy(c.id)">
+                  <i class="bi bi-trash3"></i>
+                </button> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  
+  </div>
+
   <!-- Modal crear-->
-  <div
-    class="modal fade"
-    id="modal-create"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="modal-create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" style="color: white">New client</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form class="form-tarifas">
             <div id="izq">
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  name="name"
-                  v-model="form.name"
-                  class="form-control"
-                  id="floatingInput1"
-                />
+                <input type="text" name="name" v-model="form.name" class="form-control" id="floatingInput1" />
                 <label for="floatingInput1">name</label>
                 <span style="color: aliceblue" v-if="errors.name">
-                  {{ errors.name }}</span
-                >
+                  {{ errors.name }}</span>
               </div>
               <div class="form-floating mb-3">
-                <input
-                  type="email"
-                  name="email"
-                  v-model="form.email"
-                  class="form-control"
-                  id="floatingInput2"
-                  placeholder="name@example.com"
-                />
+                <input type="email" name="email" v-model="form.email" class="form-control" id="floatingInput2"
+                  placeholder="name@example.com" />
                 <label for="floatingInput2"> email</label>
                 <span style="color: aliceblue" v-if="errors.email">
-                  {{ errors.email }}</span
-                >
+                  {{ errors.email }}</span>
               </div>
               <div class="form-floating mb-3">
-                <input
-                  type="password"
-                  name="password"
-                  v-model="form.password"
-                  class="form-control"
-                  id="floatingInput3"
-                  placeholder="password"
-                />
+                <input type="password" name="password" v-model="form.password" class="form-control" id="floatingInput3"
+                  placeholder="password" />
                 <label for="floatingInput3"> password</label>
                 <span style="color: aliceblue" v-if="errors.password">
-                  {{ errors.password }}</span
-                >
+                  {{ errors.password }}</span>
               </div>
               <div class="form-floating mb-3">
-                <input
-                  type="password"
-                  name="password"
-                  v-model="form.password_confirmation"
-                  class="form-control"
-                  id="floatingInput4"
-                  placeholder="password_confirmation"
-                />
+                <input type="password" name="password" v-model="form.password_confirmation" class="form-control"
+                  id="floatingInput4" placeholder="password_confirmation" />
                 <label for="floatingInput4">password confirmation</label>
-                <span
-                  style="color: aliceblue"
-                  v-if="errors.password_confirmation"
-                >
-                  {{ errors.password_confirmation }}</span
-                >
+                <span style="color: aliceblue" v-if="errors.password_confirmation">
+                  {{ errors.password_confirmation }}</span>
               </div>
               <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  name="age"
-                  v-model="form.age"
-                  class="form-control"
-                  id="floatingInput5"
-                  placeholder=""
-                />
+                <input type="number" name="age" v-model="form.age" class="form-control" id="floatingInput5"
+                  placeholder="" />
                 <label for="floatingInput5">age</label>
                 <span style="color: aliceblue" v-if="errors.age">
-                  {{ errors.age }}</span
-                >
+                  {{ errors.age }}</span>
               </div>
               <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  name="weight"
-                  v-model="form.weight"
-                  class="form-control"
-                  id="floatingInput6"
-                  placeholder=""
-                />
+                <input type="number" name="weight" v-model="form.weight" class="form-control" id="floatingInput6"
+                  placeholder="" />
                 <label for="floatingInput6"> weight</label>
                 <span style="color: aliceblue" v-if="errors.weight">
-                  {{ errors.weight }}</span
-                >
+                  {{ errors.weight }}</span>
               </div>
             </div>
 
             <div id="dere">
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  name="nivel"
-                  v-model="form.nivel"
-                  class="form-control"
-                  id="floatingInput7"
-                  placeholder=""
-                />
+                <input type="text" name="nivel" v-model="form.nivel" class="form-control" id="floatingInput7"
+                  placeholder="" />
                 <label for="floatingInput7"> nivel</label>
                 <span style="color: aliceblue" v-if="errors.nivel">
-                  {{ errors.nivel }}</span
-                >
+                  {{ errors.nivel }}</span>
               </div>
 
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  name="injures"
-                  v-model="form.injures"
-                  class="form-control"
-                  id="floatingInput8"
-                  placeholder=""
-                />
+                <input type="text" name="injures" v-model="form.injures" class="form-control" id="floatingInput8"
+                  placeholder="" />
                 <label for="floatingInput8"> injures</label>
                 <span style="color: aliceblue" v-if="errors.injures">
-                  {{ errors.injures }}</span
-                >
+                  {{ errors.injures }}</span>
               </div>
               <div class="form-floating mb-3">
-                <input
-                  type="date"
-                  name="injures"
-                  v-model="form.start_date"
-                  class="form-control"
-                  id="floatingInput9"
-                  placeholder=""
-                />
+                <input type="date" name="injures" v-model="form.start_date" class="form-control" id="floatingInput9"
+                  placeholder="" />
                 <label for="floatingInput9"> start date</label>
                 <span style="color: aliceblue" v-if="errors.start_date">
-                  {{ errors.start_date }}</span
-                >
+                  {{ errors.start_date }}</span>
               </div>
               <div class="form-floating mb-3">
-                <input
-                  type="date"
-                  name="injures"
-                  v-model="form.finish_date"
-                  class="form-control"
-                  id="floatingInput0"
-                  placeholder=""
-                />
+                <input type="date" name="injures" v-model="form.finish_date" class="form-control" id="floatingInput0"
+                  placeholder="" />
                 <label for="floatingInput0"> finish date</label>
                 <span style="color: aliceblue" v-if="errors.finish_date">
-                  {{ errors.finish_date }}</span
-                >
+                  {{ errors.finish_date }}</span>
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            data-bs-toggle="modal"
-            data-bs-target="#modal-create-rates"
-          >
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal"
+            data-bs-target="#modal-create-rates">
             select pago
           </button>
           <!-- <button type="button" class="btn btn-primary " @click="store()" data-bs-dismiss="modal"> created</button> -->
@@ -261,33 +162,17 @@
   </div>
 
   <!-- Modal crear rates -->
-  <div
-    class="modal fade"
-    id="modal-create-rates"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="modal-create-rates" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Modal title</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form class="form-tarifas">
-            <article
-              id="article"
-              v-for="t in rates_list"
-              :key="'rates_list' + t.id"
-              @click="select_rate(t)"
-            >
+            <article id="article" v-for="t in rates_list" :key="'rates_list' + t.id" @click="select_rate(t)">
               <p>
                 {{ t.name }}
               </p>
@@ -298,12 +183,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            @click="store()"
-          >
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="store()">
             crear
           </button>
         </div>
@@ -313,154 +193,82 @@
   <!-- Modal crear rates -->
 
   <!-- Modal editar-->
-  <div
-    class="modal fade"
-    id="modal-edit"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="modal-edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" style="color: white">Edit client</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form class="form-tarifas">
             <div id="izq">
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  name="name"
-                  v-model="form.name"
-                  class="form-control"
-                  id="floatingInput1-edit"
-                />
+                <input type="text" name="name" v-model="form.name" class="form-control" id="floatingInput1-edit" />
                 <label for="floatingInput1-edit">name</label>
                 <span style="color: aliceblue" v-if="errors.name">
-                  {{ errors.name }}</span
-                >
+                  {{ errors.name }}</span>
               </div>
               <div class="form-floating mb-3">
-                <input
-                  type="email"
-                  name="email"
-                  v-model="form.email"
-                  class="form-control"
-                  id="floatingInput2-edit"
-                  placeholder="name@example.com"
-                />
+                <input type="email" name="email" v-model="form.email" class="form-control" id="floatingInput2-edit"
+                  placeholder="name@example.com" />
                 <label for="floatingInput2-edit"> email</label>
                 <span style="color: aliceblue" v-if="errors.email">
-                  {{ errors.email }}</span
-                >
+                  {{ errors.email }}</span>
               </div>
               <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  name="age"
-                  v-model="form.age"
-                  class="form-control"
-                  id="floatingInput5-edit"
-                  placeholder=""
-                />
+                <input type="number" name="age" v-model="form.age" class="form-control" id="floatingInput5-edit"
+                  placeholder="" />
                 <label for="floatingInput5-edit">age</label>
                 <span style="color: aliceblue" v-if="errors.age">
-                  {{ errors.age }}</span
-                >
+                  {{ errors.age }}</span>
               </div>
               <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  name="weight"
-                  v-model="form.weight"
-                  class="form-control"
-                  id="floatingInput6-edit"
-                  placeholder=""
-                />
+                <input type="number" name="weight" v-model="form.weight" class="form-control" id="floatingInput6-edit"
+                  placeholder="" />
                 <label for="floatingInput6-edit"> weight</label>
                 <span style="color: aliceblue" v-if="errors.weight">
-                  {{ errors.weight }}</span
-                >
+                  {{ errors.weight }}</span>
               </div>
             </div>
 
             <div id="dere">
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  name="nivel"
-                  v-model="form.nivel"
-                  class="form-control"
-                  id="floatingInput7-edit"
-                  placeholder=""
-                />
+                <input type="text" name="nivel" v-model="form.nivel" class="form-control" id="floatingInput7-edit"
+                  placeholder="" />
                 <label for="floatingInput7-edit"> nivel</label>
                 <span style="color: aliceblue" v-if="errors.nivel">
-                  {{ errors.nivel }}</span
-                >
+                  {{ errors.nivel }}</span>
               </div>
 
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  name="injures"
-                  v-model="form.injures"
-                  class="form-control"
-                  id="floatingInput8-edit"
-                  placeholder=""
-                />
+                <input type="text" name="injures" v-model="form.injures" class="form-control" id="floatingInput8-edit"
+                  placeholder="" />
                 <label for="floatingInput8-edit"> injures</label>
                 <span style="color: aliceblue" v-if="errors.injures">
-                  {{ errors.injures }}</span
-                >
+                  {{ errors.injures }}</span>
               </div>
               <div class="form-floating mb-3">
-                <input
-                  type="date"
-                  name="injures"
-                  v-model="form.start_date"
-                  class="form-control"
-                  id="floatingInput9-edit"
-                  placeholder=""
-                />
+                <input type="date" name="injures" v-model="form.start_date" class="form-control"
+                  id="floatingInput9-edit" placeholder="" />
                 <label for="floatingInput9-edit"> start date</label>
                 <span style="color: aliceblue" v-if="errors.start_date">
-                  {{ errors.start_date }}</span
-                >
+                  {{ errors.start_date }}</span>
               </div>
               <div class="form-floating mb-3">
-                <input
-                  type="date"
-                  name="injures"
-                  v-model="form.finish_date"
-                  class="form-control"
-                  id="floatingInput0-edit"
-                  placeholder=""
-                />
+                <input type="date" name="injures" v-model="form.finish_date" class="form-control"
+                  id="floatingInput0-edit" placeholder="" />
                 <label for="floatingInput0-edit"> finish date</label>
                 <span style="color: aliceblue" v-if="errors.finish_date">
-                  {{ errors.finish_date }}</span
-                >
+                  {{ errors.finish_date }}</span>
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            data-bs-toggle="modal"
-            data-bs-target="#modal-edit-rates"
-          >
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal"
+            data-bs-target="#modal-edit-rates">
             select pago
           </button>
           <!-- <button type="button" class="btn btn-primary " @click="store()" data-bs-dismiss="modal"> created</button> -->
@@ -470,33 +278,17 @@
   </div>
 
   <!-- Modal editar rates -->
-  <div
-    class="modal fade"
-    id="modal-edit-rates"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="modal-edit-rates" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Modal title</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form class="form-tarifas">
-            <article
-              id="article"
-              v-for="t in rates_list"
-              :key="'rates_list_edit' + t.id"
-              @click="select_rate(t)"
-            >
+            <article id="article" v-for="t in rates_list" :key="'rates_list_edit' + t.id" @click="select_rate(t)">
               <p>
                 {{ t.name }}
               </p>
@@ -507,12 +299,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            @click="update(t)"
-            data-bs-dismiss="modal"
-          >
+          <button type="button" class="btn btn-secondary" @click="update(t)" data-bs-dismiss="modal">
             crear
           </button>
         </div>
@@ -521,24 +308,50 @@
   </div>
   <!-- Modal editar rates -->
 
-  <!-- modal eliminar -->
-  <div class="modal fade" id="modal_eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+
+
+
+  <!-- Delete User Modal Start -->
+  <div class="modal fade" id="deleteUserModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Delete Client
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h6>
+            <p>¿Deseas eliminar a este cliente?:</p>
+          </h6>
+          <!-- Image management -->
+          <section class="photo-container delete">
+            <div class="photo-prev">
+              <div v-if="form.url" class="preview">
+                <img :src="form.url" />
+              </div>
+              <span v-if="!form.url" class="material-symbols-outlined">
+                account_circle
+              </span>
+            </div>
+          </section>
+          <!-- Image management -->
+
+          <p class="delete">{{ form.name }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" @click="destroy">
+            Delete Client
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <!-- Delete User Modal End -->
+
+
+
 </template>
 <style scoped>
 @import "../../assets/css/clients.css";
@@ -564,7 +377,14 @@ export default {
   data() {
     return {
       user: null,
+      toast: null,
+      modal: null,
       clients: [],
+      form_copy: {},
+      loading: false,
+      image_text: "Loading image...",
+      alert: "",
+
       rates_list: [],
       modal_create: null,
       modal_rates: null,
@@ -573,7 +393,7 @@ export default {
       modal_edit_rates: null,
       errors: {},
       form: {
-        image:"",
+        image: "",
         name: "",
         age: "",
         weight: "",
@@ -588,15 +408,19 @@ export default {
         companies_id: "",
         user_id: null,
         total: 0,
+        // images //
+        url: null,
+        preview: null,
+        updated: null,
       },
     };
   },
 
   methods: {
-    
+
     reset_form() {
       this.form = {
-        image:"",
+        image: "",
         name: "",
         age: "",
         weight: "",
@@ -611,6 +435,14 @@ export default {
         total: 0,
       };
     },
+
+    prepare_elements(name) {
+      const myModal = document.getElementById(name); //Nombre del modal
+      const myAlert = document.querySelector(".toast");
+      this.modal = bootstrap.Modal.getInstance(myModal);
+      this.toast = new bootstrap.Toast(myAlert);
+    },
+
     error_message(e) {
       this.errors = {};
       if (e.response.data.errors) this.errors = e.response.data.errors;
@@ -621,20 +453,26 @@ export default {
             message: "datos incorrestos vuelve a intentarlo",
           },
         });
+        this.modal.hide();
+        this.toast.show();
       }
     },
 
     async get_clients() {
+      let companies_id =  this.form.companies_id;
+      
       try {
         let rs = await this.axios.get(
-          "/api/clients"
+          `/api/clients/?companies_id=${companies_id}`
+
           // {
           //   headers: { Authorization: "Bearer " + this.token },
           // }
         );
+       
         this.clients = rs.data.clients_list;
       } catch (e) {
-        // console.log(e);
+        console.log(e );
       }
     },
 
@@ -679,6 +517,15 @@ export default {
 
     edit_clients(c) {
       this.form = c;
+      this.form.preview = false;
+      this.form.updated = null;
+      this.form.url = this.form.image
+        ? this.axios.defaults.baseURL + this.form.image
+        : null;
+      this.form_copy = Object.assign({}, this.form);
+
+      this.image_text = "You profile photo";
+      this.loading = false;
     },
 
     async update(cliente, payment_id) {
@@ -704,29 +551,30 @@ export default {
         this.modal_edit.show();
       }
     },
+
     async destroy() {
-      const modal1 = document.getElementById("modal_eliminar");
-      this.modal_eliminar = bootstrap.Modal.getInstance(modal1);
-            try {
-                const id = this.client.id;
-                
-                const res = await this.axios.delete(`/api/clients/${this.form}`, {
-                    headers: {
-                        Authorization: "Bearer " + localStorage.token,
-                    },
-                });
-                this.getClients();
-                this.alert = res.data.message;
+      this.prepare_elements("deleteUserModal");
 
-                this.modal.hide();
-                this.toast.show();
-            
-            } catch (e) {
-              this.error_message(e);
-            }
-        },
+      try {
+        const id = this.form.id;
+        console.log(this.form.id)
+        const res = await this.axios.delete(`/api/clients/${id}`, {
+          // headers: {
+          //   Authorization: "Bearer " + localStorage.token,
+          // },
+        });
+        this.get_clients();
+        this.alert = res.data.message;
 
-    
+        this.modal.hide();
+        this.toast.show();
+      } catch (e) {
+        this.error_message(e);
+      }
+    },
+
+
+
   },
 };
 </script>

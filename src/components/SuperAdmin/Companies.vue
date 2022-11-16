@@ -122,6 +122,27 @@ export default {
         console.log(e);
       }
     },
+
+    // async destroy() {
+    //      this.prepare_elements("deleteUserModal");
+
+    //      try {
+    //         const id = this.client.id;
+    //         const res = await this.axios.delete(`/api/clients/${id}`, {
+    //            headers: {
+    //               Authorization: "Bearer " + localStorage.token,
+    //            },
+    //         });
+    //         this.getClients();
+    //         this.alert = res.data.message;
+
+    //         this.modal.hide();
+    //         this.toast.show();
+    //      } catch (e) {
+    //         this.manage_error_messages(e);
+    //      }
+    //   },
+
   },
 };
 </script>
