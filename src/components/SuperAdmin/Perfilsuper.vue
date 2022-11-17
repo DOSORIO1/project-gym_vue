@@ -5,7 +5,7 @@
   <div class="container-perfil">
     <section class="section1">
       <div id="perfil">
-        <img id="foto" src="../../assets/img/roca.jpg" alt="" />
+        <img id="foto" :src="user.image" alt="" />
         <p>{{ user.name }}</p>
         <p>Email: {{ user.email }}</p>
 
@@ -16,6 +16,7 @@
     </section>
   </div>
 </template>
+
 
 <script>
 export default {

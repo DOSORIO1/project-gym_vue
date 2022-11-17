@@ -62,7 +62,10 @@
             <span class="icon">
               <ion-icon name="lock-closed-sharp"></ion-icon>
             </span>
-            <span class="title">new emplooyed</span>
+            <router-link class="title" to="/Admin/emplooyed"
+              >emplooyed</router-link
+            >
+            <span class="title"></span>
           </a>
         </li>
         <li>
@@ -70,7 +73,9 @@
             <span class="icon">
               <ion-icon name="log-in-sharp"></ion-icon>
             </span>
-            <span class="title">sin uso</span>
+            <router-link class="title" to="/Admin/Restoreclient"
+              >Restore client</router-link
+            >
           </a>
         </li>
       </ul>
@@ -92,7 +97,7 @@
       <!-- userImg -->
       <div class="dropdown">
         <img
-          src="../../assets/images/user.jpg"
+          :src="user.image"
           type="button"
           class="user btn-secondary dropdown-toggle"
           data-bs-toggle="dropdown"
@@ -118,6 +123,12 @@
 <script>
 // MenuToggle
 export default {
+  data() {
+    return {
+      token: null,
+      user: {},
+    };
+  },
   mounted() {
     if (localStorage.token) {
       this.token = localStorage.token;

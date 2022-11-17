@@ -1,10 +1,18 @@
-.details .recentorders {
-  position: relative;
-  display: grid;
-  min-height: 500px;
+ .recentorders {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background: #fff;
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  overflow-y: scroll;
+}
+.details {
+  position: relative;
+  width: 100vw;
+  height: 99%;
+  border-collapse: collapse;
+  
 }
 
 .cardHeader {
@@ -19,7 +27,7 @@
 }
 
 .details table {
-  width: 100%;
+  width: 98%;
   border-collapse: collapse;
   margin: 10px;
   

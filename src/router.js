@@ -10,13 +10,14 @@ import ResetPassword from "./components/ResetPassword.vue";
 import SuperAdmin from "./components/SuperAdmin/SuperAdmin.vue";
 import Perfilsuper from "./components/SuperAdmin/Perfilsuper.vue";
 import Companies from "./components/SuperAdmin/Companies.vue";
-Companies
+// Companies
 import Clients from "./components/Admin/Clients.vue";
 import Assists from "./components/Admin/Assists.vue";
 import Inventory from "./components/Admin/Inventory.vue";
 import Sales from "./components/Admin/Sales.vue";
 import HomeAdmin from "./components/Admin/Home.vue";
 import Admin from "./components/Admin/Admin.vue";
+import Restoreclient from "./components/Admin/Restoreclient.vue";
 
 
 
@@ -79,6 +80,10 @@ const routes = [
       {
         path: "Sales",
         component: Sales,
+      },
+      {
+        path: "Restoreclient",
+        component: Restoreclient,
       },
     ],
   },

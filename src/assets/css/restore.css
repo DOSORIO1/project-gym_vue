@@ -1,0 +1,31 @@
+
+.conta_body{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    height: 100vh;
+
+}
+.cars{
+    display: flex;
+    flex-wrap: wrap;
+    height: 98%;
+    overflow: scroll;
+}
+
+.card{
+    border-radius: 120px 120px 40px 40px;
+    width: 220px;
+    height: 390px;
+    margin: 2rem;
+    padding: 0%;
+   
+}
+.card:hover{
+   
+    box-shadow: 0 7px 25px rgba(0, 88, 252, 0.438);
+}
+#foto{
+    height: 190px;
+    border-radius: 100%;
+}

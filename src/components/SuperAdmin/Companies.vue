@@ -53,7 +53,7 @@
           <label for="floatingInput1-create3">address</label>
           <input class="form-control" id="floatingInput1-create3" type="text" name="address" v-model="form.address" />
           <label for="floatingInput1-create4">numero</label>
-          <input class="form-control" id="floatingInput1-create4" type="number" name="numero" v-model="form.numero" />
+          <input class="form-control" id="floatingInput1-create4" type="number" name="numero" v-model="form.phone_number" />
           
         </div>
         <div class="modal-footer">
@@ -86,7 +86,7 @@ export default {
         name: "",
         logo: "",
         address: "",
-        numero: "",
+        phone_number: "",
       },
     };
   },

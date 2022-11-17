@@ -10,17 +10,19 @@
       <table>
         <thead>
           <tr>
+            <td>photo</td>
             <td>Name</td>
+            <td> date</td>
             <td>time</td>
-            <td>date</td>
             <td>asiste</td>
            
           </tr>
         </thead>
         <tbody>
           <tr v-for="a in asistencias" :key="'asistencias' + a.id">
+            <td><img :src="a.image" alt=""></td>
             <td>{{a.name}}</td>
-            <td>${{a.date}}</td>
+            <td>{{a.date}}</td>
             <td>{{a.time}}</td>
             <td><span class="status delivered">{{a.asiste}}</span></td>
           </tr>
