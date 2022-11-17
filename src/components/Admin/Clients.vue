@@ -1,6 +1,6 @@
 <template>
 
-  <div class="details">
+   <div class="conta_iner">
     <div class="recentorders">
       <div class="cardHeader">
         <h2>Reguistro de clientes</h2>
@@ -48,13 +48,10 @@
             </td>
             <td>
 
-              <span @click="edit_clients(c)" class="material-symbols-outlined" data-bs-toggle="modal"
-                data-bs-target="#deleteUserModal">
-                delete
-              </span>
-              <!-- <button type="button" class="btn" @click="destroy(c.id)">
+              
+              <button type="button"  data-bs-target="#deleteUserModal" data-bs-toggle="modal" class="btn  material-symbols-outlined" @click="edit_clients(c)">
                   <i class="bi bi-trash3"></i>
-                </button> -->
+                </button>
             </td>
           </tr>
         </tbody>
@@ -574,7 +571,47 @@ export default {
       }
     },
 
+    // cancel_form() {
+    //      Object.assign(this.client, this.client_copy);
+    //      this.loading = false;
+    //      this.client.updated = null;
+    //   },
 
+    //   open_browser(input_name) {
+    //      const input = document.getElementById(input_name);
+    //      input.click();
+    //      this.loading = true;
+    //      this.client.updated = null;
+    //      this.image_text = "Loading...";
+    //   },
+
+    //   show_image(e) {
+    //      if (e.target.files[0]) {
+    //         console.log("updated!");
+    //         this.client.updated = true;
+
+    //         this.client.image = e.target.files[0];
+    //         this.client.url = URL.createObjectURL(e.target.files[0]);
+    //      } else {
+    //         console.log("No se seleccionó ninguna imagen!!");
+    //         this.client.url = this.client_copy.url;
+    //      }
+
+    //      this.loading = false;
+    //   },
+
+    //   clear_image(input_name) {
+    //      this.client.image = null;
+    //      this.client.updated = true;
+    //      this.client.url = null;
+    //      document.getElementById(input_name).value = null; //clear input file
+    //   },
+
+    //   stop_loading() {
+    //      console.log("cancelaste la carga!!");
+    //      this.client.url = this.client_copy.url;
+    //      this.loading = false;
+    //   },
 
   },
 };

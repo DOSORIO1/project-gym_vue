@@ -3,24 +3,20 @@
     src: url(../assets/img/Brothery.ttf);
 }
 
-.details{
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 91vh;
-  
-  
-}
+
 
 .recentorders::-webkit-scrollbar {
    color: #0864f9;
 }
+.conta_iner{
+  width: 100vw;
+   height: 100vh;
+}
  .recentorders {
-   position: absolute;
+  position: relative;
    width: 100%;
    height: 100%;
-   margin: 20px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.205);
+  
   overflow: scroll;
   }
   
@@ -37,36 +33,37 @@
   }
   
    table {
+    background: #04ff2e25;
+    position: absolute;
    
-    border-collapse: collapse;
-    margin: 10px;
-   
-     
-    
+   align-items: center;
+   margin: 10px;
+   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.205);
+  
   }
   
-  .details table thead td {
+   table thead td {
     font-weight: 600;
   }
   
-  .details .recentorders table tr {
+   .recentorders table tr {
     color: #222;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
-  .details .recentorders table tbody tr:hover{
+   .recentorders table tbody tr:hover{
     background: #287bff;
     color: #fff;
   }
-  .details .recentorders table tr td{
+   .recentorders table tr td{
     padding: 10px;
   }
-  .details .recentorders table tr td:last-child{
+   .recentorders table tr td:last-child{
     text-align: end;
   }
-  .details .recentorders table tr td:nth-child(2){
+   .recentorders table tr td:nth-child(2){
     text-align: end;
   }
-  .details .recentorders table tr td:nth-child(3){
+   .recentorders table tr td:nth-child(3){
     text-align: center;
   }
   
