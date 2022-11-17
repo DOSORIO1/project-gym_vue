@@ -3,7 +3,9 @@
     src: url(../assets/img/Brothery.ttf);
 }
 
-
+.img-fluid{
+  width: 80px;
+}
 
 .recentorders::-webkit-scrollbar {
    color: #0864f9;

@@ -31,9 +31,9 @@
         </thead>
         <tbody>
           <tr v-for="c in clients" :key="'clients' + c.id">
-            <td style="width: 200px">
-              <img
-                style="width: 200px; border-radius: 10px; width: 200px"
+            <td>
+              <img id="image"
+                
                 :src="c.image"
                 class="img-fluid rounded-start"
                 alt="..."

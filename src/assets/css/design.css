@@ -236,7 +236,9 @@
   margin-right: 2rem;
 
 }
-
+.dropdown{
+  margin: 1rem;
+}
 
 .dropdown ul {
   position: relative;

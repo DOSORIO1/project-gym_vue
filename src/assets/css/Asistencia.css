@@ -14,6 +14,9 @@
   border-collapse: collapse;
   
 }
+img{
+  width: 60px;
+}
 
 .cardHeader {
   display: flex;
