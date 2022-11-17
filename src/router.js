@@ -18,7 +18,7 @@ import Sales from "./components/Admin/Sales.vue";
 import HomeAdmin from "./components/Admin/Home.vue";
 import Admin from "./components/Admin/Admin.vue";
 import Restoreclient from "./components/Admin/Restoreclient.vue";
-
+import Employed from "./components/Admin/Employed.vue";
 
 
 
@@ -80,6 +80,10 @@ const routes = [
       {
         path: "Sales",
         component: Sales,
+      },
+      {
+        path: "Employed",
+        component: Employed,
       },
       {
         path: "Restoreclient",

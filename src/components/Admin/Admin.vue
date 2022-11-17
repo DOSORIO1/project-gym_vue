@@ -62,10 +62,10 @@
             <span class="icon">
               <ion-icon name="lock-closed-sharp"></ion-icon>
             </span>
-            <router-link class="title" to="/Admin/emplooyed"
+            <router-link class="title" to="/Admin/employed"
               >emplooyed</router-link
             >
-            <span class="title"></span>
+           
           </a>
         </li>
         <li>
