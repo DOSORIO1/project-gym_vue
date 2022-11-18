@@ -45,7 +45,7 @@ export default {
             });
         }
 
-        this.restore();
+        this.employe();
 
     },
     data() {
@@ -64,7 +64,7 @@ export default {
     },
 
     methods: {
-        async restore() {
+        async employe() {
             let companies_id = this.form.companies_id;
 
             try {

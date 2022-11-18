@@ -8,21 +8,71 @@
             <p>{{ r.name }}</p>
             <p>{{ r.email }}</p>
             <p>date delete: {{ r.deleted_at }}</p>
-            <button
-          type="button"
-          data-bs-target="#deleteUserModal"
-          data-bs-toggle="modal"
-          class="button btn material-symbols-outlined"
-          @click="restore_client()"
-        >
-          restore
-        </button>
+            <span
+              @click="edit(r)"
+              class="btn material-symbols-outlined"
+              data-bs-toggle="modal"
+              data-bs-target="#restoreUserModal"
+            >
+              restore
+            </span>
           </span>
         </div>
-        
       </div>
     </div>
   </div>
+
+  <!-- Restore User Modal Start -->
+  <div
+    class="modal fade"
+    id="restoreUserModal"
+    tabindex="-1"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Restore Client</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <h6>
+            <p>¿Deseas restablecer a este cliente?:</p>
+          </h6>
+          <!-- Image management -->
+          <section class="photo-container delete">
+            <div class="photo-prev">
+              <div v-if="form.url" class="preview">
+                <img :src="form.url" />
+              </div>
+              <span v-if="!form.url" class="material-symbols-outlined">
+                account_circle
+              </span>
+            </div>
+          </section>
+          <!-- Image management -->
+
+          <p class="delete">{{ form.name }}</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            @click="restore_client()"
+          >
+            Restore
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Restore User Modal End -->
 </template>
 <style scoped>
 @import "../../assets/css/restore.css";
@@ -42,24 +92,53 @@ export default {
     }
 
     this.restore();
-    
   },
   data() {
     return {
       restor: [],
+      form_copy: {},
       alert: "",
       id: null,
+      modal: null,
+      toast: null,
+      errors: {},
       form: {
-        image: "",
         name: "",
         email: "",
         companies_id: "",
         user_id: "",
+        image: null,
+        url: null,
+        preview: null,
+        updated: null,
       },
+      loading: false,
+      image_text: "Loading image...",
     };
   },
 
   methods: {
+    prepare_elements(name) {
+      const myModal = document.getElementById(name); //Nombre del modal
+      const myAlert = document.querySelector(".toast");
+      this.modal = bootstrap.Modal.getInstance(myModal);
+      this.toast = new bootstrap.Toast(myAlert);
+    },
+    manage_error_messages(e) {
+      console.log(e);
+      this.errors = {};
+      if (e.response.data.errors) this.errors = e.response.data.errors;
+      else if (e.response.data.message == "Unauthenticated.") {
+        this.$router.push({
+          name: "Login",
+          params: {
+            message: "Tu sessión ha expirado, por favor intentalo de nuevo",
+          },
+        });
+        this.modal.hide();
+        this.toast.show();
+      }
+    },
     async restore() {
       let companies_id = this.form.companies_id;
 
@@ -78,24 +157,37 @@ export default {
         console.log(e);
       }
     },
+    edit(r) {
+      this.restor = r;
+      this.form.preview = false;
+      this.form.updated = null;
+      this.form.url = this.form.image
+        ? this.axios.defaults.baseURL + this.form.image
+        : null;
+      this.form_copy = Object.assign({}, this.form);
+
+      this.image_text = "You profile photo";
+      this.loading = false;
+    },
     async restore_client() {
-        
+      this.prepare_elements("restoreUserModal");
 
-         try {
-            const id = this.restor.id;
-            const res = await this.axios.delete(`/api/clients/restore/${id}`, {
-               headers: {
-                  Authorization: "Bearer " + localStorage.token,
-               },
-            });
-            this.restore();
-            this.alert = res.data.message;
+      try {
+        const id = this.restor.id;
+        const res = await this.axios.delete(`/api/clients/restore/${id}`, {
+          headers: {
+            Authorization: "Bearer " + localStorage.token,
+          },
+        });
+        this.restore();
+        this.alert = res.data.message;
 
-            
-         } catch (e) {
-
-         }
-      },
+        this.modal.hide();
+        this.toast.show();
+      } catch (e) {
+        this.manage_error_messages(e);
+      }
+    },
   },
 };
 </script>

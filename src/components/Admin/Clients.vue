@@ -555,7 +555,7 @@
           <section class="photo-container delete">
             <div class="photo-prev">
               <div v-if="form.url" class="preview">
-                <img :src="form.url" />
+                <img :src="form.image" />
               </div>
               <span v-if="!form.url" class="material-symbols-outlined">
                 account_circle
@@ -626,6 +626,7 @@ export default {
         start_date: "",
         finish_date: "",
         rates_id: "",
+        roles_id: 4,
         password: "",
         password_confirmation: "",
         companies_id: "",
