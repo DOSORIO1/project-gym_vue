@@ -1,78 +1,74 @@
 <template>
-  <div class="conta_body">
-    <div class="cars">
-      <div class="card" v-for="r in restor" :key="'restor' + r.id">
-        <img :src="r.image" class="card-img-top" id="foto" />
-        <div class="card-body">
-          <span class="card-text">
-            <p>{{ r.name }}</p>
-            <p>{{ r.email }}</p>
-            <p>date delete: {{ r.deleted_at }}</p>
-            <span
-              @click="edit(r)"
-              class="btn material-symbols-outlined"
-              data-bs-toggle="modal"
-              data-bs-target="#restoreUserModal"
-            >
-              restore
-            </span>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="bodyy">
 
-  <!-- Restore User Modal Start -->
-  <div
-    class="modal fade"
-    id="restoreUserModal"
-    tabindex="-1"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Restore Client</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <h6>
-            <p>¿Deseas restablecer a este cliente?:</p>
-          </h6>
-          <!-- Image management -->
-          <section class="photo-container delete">
-            <div class="photo-prev">
-              <div v-if="form.url" class="preview">
-                <img :src="form.url" />
+    <div class="container">
+      <div class="contenido">
+        <div class="cards" v-for="r in restor" :key="'restor' + r.id">
+          <div class="card">
+            <div class="image">
+              <span class="overly"></span>
+
+              <div class="card-image">
+                <img :src="r.image" alt="" class="card-img">
               </div>
-              <span v-if="!form.url" class="material-symbols-outlined">
-                account_circle
-              </span>
             </div>
-          </section>
-          <!-- Image management -->
+            <div class="card-content">
+              <h2 class="name">{{ r.name }}</h2>
+              <br>
+              <p class="descrition"> Email: {{ r.email }}
+              </p>
+              <p>date delete: {{ r.deleted_at }}</p>
+              <br>
+              <span @click="edit(r)" class="btn material-symbols-outlined" data-bs-toggle="modal"
+                data-bs-target="#restoreUserModal">
+                restore
+              </span>
 
-          <p class="delete">{{ form.name }}</p>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-primary"
-            @click="restore_client()"
-          >
-            Restore
-          </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+   
+
+    <!-- Restore User Modal Start -->
+    <div class="modal fade" id="restoreUserModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Restore Client</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h6>
+              <p>¿Deseas restablecer a este cliente?:</p>
+            </h6>
+            <!-- Image management -->
+            <section class="photo-container delete">
+              <div class="photo-prev">
+                <div v-if="form.url" class="preview">
+                  <img :src="form.url" />
+                </div>
+                <span v-if="!form.url" class="material-symbols-outlined">
+                  account_circle
+                </span>
+              </div>
+            </section>
+            <!-- Image management -->
+
+            <p class="delete">{{ form.name }}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" @click="restore_client()">
+              Restore
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Restore User Modal End -->
   </div>
-  <!-- Restore User Modal End -->
 </template>
 <style scoped>
 @import "../../assets/css/restore.css";
