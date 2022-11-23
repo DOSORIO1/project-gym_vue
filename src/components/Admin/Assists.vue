@@ -4,8 +4,9 @@
       <div class="cardHeader">
         <h2>Recent Order</h2>
         <div>
-          <input type="date" class="form-control" />
-          <input type="date" class="form-control" />
+          <input type="date" class="form-control" v-model="start_date"/>
+          <input type="date" class="form-control" v-model="finish_date"/>
+          <input type="button" value="Listar" @click="get_asistencias()">
         </div>
       </div>
       <table>
@@ -44,6 +45,10 @@ export default {
       this.user = JSON.parse(localStorage.user);
       this.form.user_id = this.user.id;
       this.form.companies_id = this.user.companies_id;
+
+      this.start_date = new Date().toISOString().substring(0, 10)
+      this.finish_date = new Date().toISOString().substring(0, 10)
+
     } else {
       this.$router.push({
         name: "Login",
@@ -64,6 +69,8 @@ export default {
         companies_id: "",
         user_id: "",
       },
+      start_date: "",
+      finish_date: "",
     };
   },
 
@@ -73,7 +80,7 @@ export default {
       let companies_id = this.form.companies_id;
       try {
         const rs = await this.axios.get(
-          `/api/attendances/?companies_id=${companies_id}`
+          `/api/attendances/?companies_id=${companies_id}&start_date=${this.start_date}&finish_date=${this.finish_date}`
           // {
           //   headers: { Authorization: "Bearer " + this.token },
           // }

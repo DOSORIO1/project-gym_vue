@@ -2,7 +2,7 @@
   <div class="conta_iner">
     <div class="recentorders">
       <div class="cardHeader">
-        <h2>CLIENNTS</h2>
+        <h2>CLIENTS</h2>
         <button id="btn" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-create">
           <i class="bi bi-person-plus-fill"></i>
         </button>
@@ -110,6 +110,37 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+
+          <!-- Image management -->
+          <section class="photo-container">
+            <div class="photo-prev">
+              <input type="file" id="new-client-input" @change="show_image" style="display: none" />
+              <!-- Image client exist and is not loading a new image -->
+              <div class="preview" v-if="form.url && !loading">
+                <span class="material-symbols-outlined clear-image" @click="clear_image('new-client-input')">
+                  close
+                </span>
+                <img @click="open_browser('new-client-input')" :src="form.url" />
+              </div>
+              <!-- Image client not exist and is not loading a new image -->
+              <span v-if="!form.url && !loading" class="material-symbols-outlined"
+                @click="open_browser('new-client-input')">
+                account_circle
+              </span>
+
+              <div v-if="loading" class="loading" @click="open_browser('new-client-input')"></div>
+              <!-- User can stop the image loading -->
+              <span v-if="loading" class="image_text" :class="{ stop: loading }" @click="stop_loading()"
+                @mouseover="image_text = 'Stop loading!'" @mouseleave="image_text = 'Loading...'">{{ image_text
+                }}</span>
+              <span v-if="!loading" class="image_text">Your profile photo</span>
+            </div>
+            <div class="form-text" v-if="errors.image">
+              {{ errors.image[0] }}
+            </div>
+          </section>
+          <!-- Image management -->
+
           <form class="form-tarifas">
             <div id="izq">
               <div class="form-floating mb-3">
@@ -512,6 +543,8 @@ export default {
       this.modal_create = bootstrap.Modal.getInstance(modal1);
       this.modal_rates = bootstrap.Modal.getInstance(modal2);
 
+      console.log(this.form)
+      
       try {
         let response = await this.axios.post("/api/clients", this.form);
         this.get_clients();
@@ -603,47 +636,47 @@ export default {
       }
     },
 
-    // cancel_form() {
-    //      Object.assign(this.client, this.client_copy);
-    //      this.loading = false;
-    //      this.client.updated = null;
-    //   },
+    cancel_form() {
+      Object.assign(this.client, this.form_copy);
+      this.loading = false;
+      this.form.updated = null;
+    },
 
-    //   open_browser(input_name) {
-    //      const input = document.getElementById(input_name);
-    //      input.click();
-    //      this.loading = true;
-    //      this.client.updated = null;
-    //      this.image_text = "Loading...";
-    //   },
+    open_browser(input_name) {
+      const input = document.getElementById(input_name);
+      input.click();
+      this.loading = true;
+      this.form.updated = null;
+      this.image_text = "Loading...";
+    },
 
-    //   show_image(e) {
-    //      if (e.target.files[0]) {
-    //         console.log("updated!");
-    //         this.client.updated = true;
+    show_image(e) {
+      if (e.target.files[0]) {
+        console.log("updated!");
+        this.form.updated = true;
 
-    //         this.client.image = e.target.files[0];
-    //         this.client.url = URL.createObjectURL(e.target.files[0]);
-    //      } else {
-    //         console.log("No se seleccionó ninguna imagen!!");
-    //         this.client.url = this.client_copy.url;
-    //      }
+        this.form.image = e.target.files[0];
+        this.form.url = URL.createObjectURL(e.target.files[0]);
+      } else {
+        console.log("No se seleccionó ninguna imagen!!");
+        this.form.url = this.form_copy.url;
+      }
 
-    //      this.loading = false;
-    //   },
+      this.loading = false;
+    },
 
-    //   clear_image(input_name) {
-    //      this.client.image = null;
-    //      this.client.updated = true;
-    //      this.client.url = null;
-    //      document.getElementById(input_name).value = null; //clear input file
-    //   },
+    clear_image(input_name) {
+      this.form.image = null;
+      this.form.updated = true;
+      this.form.url = null;
+      document.getElementById(input_name).value = null; //clear input file
+    },
 
-    //   stop_loading() {
-    //      console.log("cancelaste la carga!!");
-    //      this.client.url = this.client_copy.url;
-    //      this.loading = false;
-    //   },
+    stop_loading() {
+      console.log("cancelaste la carga!!");
+      this.form.url = this.form_copy.url;
+      this.loading = false;
+    },
   },
 };
 </script>
