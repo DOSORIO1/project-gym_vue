@@ -11,7 +11,19 @@
         <div v-for="c in clients" :key="'clients' + c.id" class="car">
           <div class="lines"></div>
           <div class="imgBx">
-            <img id="image" :src="c.image" class="img-fluid rounded-start" alt="..." />
+            <!-- <img id="image" :src="c.image" class="img-fluid rounded-start" alt="..." /> -->
+
+            <!-- Image client exist and is not loading a new image -->
+            <img v-if="c.image && !c.url" :src="axios.defaults.baseURL + c.image" class="image-profile"
+              :id="'client' + c.id" />
+            <!-- Image client exist and uploaded a new image -->
+            <img v-if="c.url && !loading" :src="c.url" class="image-profile" :id="'client' + c.id" />
+
+            <!-- Image client not exist and is not loading a new image -->
+            <span v-if="!c.image && !loading" :id="'client' + c.id" class="material-symbols-outlined default-profile">
+              account_circle
+            </span>
+
           </div>
           <div class="content">
             <div class="details">
@@ -271,6 +283,61 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <!-- Image management -->
+          <section class="photo-container">
+                     <div class="photo-prev">
+                        <input
+                           type="file"
+                           id="edit-client-input"
+                           @change="show_image"
+                           style="display: none"
+                        />
+
+                        <!-- Image client exist and is not loading a new image -->
+                        <div class="preview" v-if="form.url && !loading">
+                           <span
+                              class="material-symbols-outlined clear-image"
+                              @click="clear_image('edit-client-input')"
+                           >
+                              close
+                           </span>
+                           <img
+                              @click="open_browser('edit-client-input')"
+                              :src="form.url"
+                           />
+                        </div>
+                        <!-- Image client not exist and is not loading a new image -->
+                        <span
+                           v-if="!form.url && !loading"
+                           class="material-symbols-outlined"
+                           @click="open_browser('edit-client-input')"
+                        >
+                           account_circle
+                        </span>
+                        <div
+                           v-if="loading"
+                           class="loading"
+                           @click="open_browser('edit-client-input')"
+                        ></div>
+                        <!-- User can stop the image loading -->
+                        <span
+                           v-if="loading"
+                           class="image_text"
+                           :class="{ stop: loading }"
+                           @click="stop_loading()"
+                           @mouseover="image_text = 'Stop loading!'"
+                           @mouseleave="image_text = 'Loading...'"
+                           >{{ image_text }}</span
+                        >
+                        <span v-if="!loading" class="image_text"
+                           >Your profile photo</span
+                        >
+                     </div>
+                     <div class="form-text" v-if="errors.image">
+                        {{ errors.image[0] }}
+                     </div>
+                  </section>
+                  <!-- Image management -->
           <form class="form-tarifas">
             <div id="izq">
               <div class="form-floating mb-3">
@@ -393,7 +460,7 @@
           <section class="photo-container delete">
             <div class="photo-prev">
               <div v-if="form.url" class="preview">
-                <img :src="form.image" />
+                <img :src="form.url" />
               </div>
               <span v-if="!form.url" class="material-symbols-outlined">
                 account_circle
@@ -544,9 +611,14 @@ export default {
       this.modal_rates = bootstrap.Modal.getInstance(modal2);
 
       console.log(this.form)
-      
+
       try {
-        let response = await this.axios.post("/api/clients", this.form);
+        let response = await this.axios.post("/api/clients", this.form, {
+          headers: {
+            // Authorization: "Bearer " + localStorage.token,
+            "Content-Type": "multipart/form-data", //Permite enviar imágenes
+          }
+        });
         this.get_clients();
         this.reset_form();
         this.modal_create.hide();
@@ -596,23 +668,36 @@ export default {
       const modal2 = document.getElementById("modal-edit-rates");
       this.modal_edit = bootstrap.Modal.getInstance(modal1);
       this.modal_edit_rates = bootstrap.Modal.getInstance(modal2);
-
       try {
-        console.log(this.form);
-        let response = await this.axios.put(
-          `/api/clients/${this.form.users_id}`,
-          this.form
-        );
-        this.get_clients();
-        this.reset_form();
-        this.modal_edit.hide();
-        this.modal_edit_rates.hide();
-      } catch (e) {
-        console.log(e);
-        this.error_message(e);
-        this.modal_edit_rates.hide();
-        this.modal_edit.show();
-      }
+        // console.log(this.form);
+            const id = this.form.id;
+            const res = await this.axios.post(
+               `/api/clients/update/${id}`,
+               this.form,
+               {
+                  headers: {
+                    //  Authorization: "Bearer " + localStorage.token,
+                     "Content-Type": "multipart/form-data", //Permite enviar imágenes
+                  },
+               }
+            );
+            // console.log(res.data);
+            this.get_clients();
+             this.reset_form();
+            this.modal_edit.hide();
+            this.modal_edit_rates.hide();
+            this.alert = res.data.message;
+            this.clear_image("edit-client-input");
+
+            this.modal.hide();
+            this.toast.show();
+         } catch (e) {
+          
+          this.error_message(e);
+          this.modal_edit_rates.hide();
+          this.modal_edit.show();
+         }
+      
     },
 
     async destroy() {

@@ -12,7 +12,8 @@
     
     width: 100% !important;
     display: flex;
-    flex-flow: column ;
+    flex-wrap: wrap;
+    flex-flow: row ;
     height: calc(100% - 78px);
 }
 
@@ -38,7 +39,9 @@
     box-shadow: 5px 5px 5px 5px rgba(43, 43, 43, 0.425);
 
 }
+
 .card{
+   
     width: 260px;
     height: 25rem;
     border-radius: 25px;
@@ -64,6 +67,10 @@
     font-size: 18px;
     font-weight: 500;
     color: #333;
+}
+.btn{
+    position: absolute;
+    bottom: 0rem;
 }
 .button{
     position: relative;
