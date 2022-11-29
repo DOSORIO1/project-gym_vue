@@ -124,8 +124,9 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    
-                    <button type="button" class="btn btn-primary " @click="store()" data-bs-dismiss="modal"> created</button>
+
+                    <button type="button" class="btn btn-primary " @click="store()" data-bs-dismiss="modal">
+                        created</button>
                 </div>
             </div>
         </div>
@@ -164,16 +165,16 @@ export default {
             image_text: "Loading image...",
             alert: "",
             modal_create: null,
-            form: {
-                image: "",
+            form: { 
                 name: "",
                 email: "",
-                roles_id: 3,
+                roles_id: "",
                 password: "",
                 password_confirmation: "",
                 companies_id: "",
                 user_id: "",
                 // images //
+                image: "",
                 url: null,
                 preview: null,
                 updated: null,
@@ -183,6 +184,22 @@ export default {
     },
 
     methods: {
+        reset_form() {
+            this.form = {
+                image: "",
+                name: "",
+                email: "",
+                roles_id: this.form_copy.roles_id,
+                password: "",
+                password_confirmation: "",
+                companies_id: this.form_copy.companies_id,
+                user_id: null,
+                // images //
+                url: null,
+                preview: null,
+                updated: null,
+            };
+        },
         prepare_elements(name) {
             const myModal = document.getElementById(name); //Nombre del modal
             const myAlert = document.querySelector(".toast");
@@ -217,7 +234,7 @@ export default {
                 );
 
                 this.employed = rs.data.employed_list;
-                console.log(rs.data.employed_list);
+                console.log(rs);
             } catch (e) {
                 console.log(e);
             }
@@ -227,38 +244,37 @@ export default {
         async store() {
             this.prepare_elements("modal-create");
 
-            console.log(this.form)
+            // console.log(this.form)
 
             try {
-                let response = await this.axios.post("/api/clients", this.form, {
+                let response = await this.axios.post("/api/empleado", this.form, {
                     headers: {
                         // Authorization: "Bearer " + localStorage.token,
                         "Content-Type": "multipart/form-data", //Permite enviar imágenes
                     }
                 });
-                this.get_clients();
+                this.employe();
                 this.reset_form();
-                this.modal_create.hide();
-               
+
             } catch (e) {
                 console.log(e);
                 this.error_message(e);
-                this.modal_rates.hide();
-               
+              
+
             }
         },
         edit_clients(e) {
-      this.form = e;
-      this.form.preview = false;
-      this.form.updated = null;
-      this.form.url = this.form.image
-        ? this.axios.defaults.baseURL + this.form.image
-        : null;
-      this.form_copy = Object.assign({}, this.form);
+            this.form = e;
+            this.form.preview = false;
+            this.form.updated = null;
+            this.form.url = this.form.image
+                ? this.axios.defaults.baseURL + this.form.image
+                : null;
+            this.form_copy = Object.assign({}, this.form);
 
-      this.image_text = "You profile photo";
-      this.loading = false;
-    },
+            this.image_text = "You profile photo";
+            this.loading = false;
+        },
         cancel_form() {
             Object.assign(this.client, this.form_copy);
             this.loading = false;
