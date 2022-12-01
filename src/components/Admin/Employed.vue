@@ -1,9 +1,10 @@
 <template>
     <div class="body">
-        <button id="btn" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-create">
+        
+        <div class="container">
+            <button id="btn" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-create">
             <i class="bi bi-person-plus-fill"></i>
         </button>
-        <div class="container">
             <div class="content">
                 <div class="cards" v-for="e in employed" :key="'employed' + e.id">
 
@@ -16,7 +17,7 @@
 
                                 <!-- Image client exist and is not loading a new image -->
                                 <img v-if="e.image && !e.url" :src="axios.defaults.baseURL + e.image"
-                                    class="image-profile" :id="'client' + e.id" />
+                                    class="imagenes image-profile" :id="'client' + e.id" />
                                 <!-- Image client exist and uploaded a new image -->
                                 <img v-if="e.url && !loading" :src="e.url" class="image-profile"
                                     :id="'client' + e.id" />
