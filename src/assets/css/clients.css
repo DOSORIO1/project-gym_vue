@@ -18,6 +18,84 @@
   background: #333;
   transition: 0.5s;
 }
+.form-tarifas{
+  display: flex;
+  
+}
+#modal-create{
+  background-image: url(../../assets/img/R.jpg);
+  background-size: top;
+}
+#modal-edit{
+  background-image: url(../../assets/img/R.jpg);
+  background-size: top;
+}
+#modal-create-rates{
+  background-image: url(../../assets/img/R.jpg);
+  background-size: top;
+}
+#modal-edit-rates{
+  background-image: url(../../assets/img/R.jpg);
+  background-size: top;
+}
+
+.search {
+  position: relative;
+  width: 400px;
+  margin: 0 10px;
+}
+
+.search label {
+  position: relative;
+  width: 100%;
+}
+
+.search label input {
+  width: 100%;
+  height: 50px;
+  border-radius: 40px;
+  padding: 5px 20px;
+  padding-left: 20px;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid #999;
+}
+
+.search label ion-icon {
+  position: absolute;
+  top: 0.8rem;
+  right: 17px;
+  font-size: 1.5em;
+}
+
+#inpus{
+  margin:15px ;
+}
+#inpus:hover{
+  color: blue;
+}
+
+#article{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: 6px;
+  border: .5px solid gainsboro;
+  height: 100px;
+  width: 130px;
+  border-radius: 20px;
+}
+#article:hover{
+  color: rgb(1, 17, 240);
+  cursor: pointer;
+  border: .5px solid rgb(4, 20, 240);
+  
+}
+
+
+
+/* imagen estilos instrutor */
 
 .car .lines {
   position: absolute;

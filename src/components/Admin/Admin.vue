@@ -88,12 +88,7 @@
         <ion-icon name="menu-outline"></ion-icon>
         <!-- search -->
       </div>
-      <div class="search">
-        <label>
-          <input type="text" placeholder="Saerch Here" />
-          <ion-icon name="search-outline"></ion-icon>
-        </label>
-      </div>
+      <h4><b>{{user.name}}</b></h4>
       <!-- userImg -->
       <div class="dropdown">
         <img

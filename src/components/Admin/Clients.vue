@@ -3,13 +3,14 @@
       <div class="recentorders">
          <div class="cardHeader">
             <h2>CLIENTS</h2>
-            <button
-               id="btn"
-               type="button"
-               class="btn btn-secondary"
-               data-bs-toggle="modal"
-               data-bs-target="#modal-create"
-            >
+            <div class="search">
+               <label>
+                  <input type="text" placeholder="Saerch Here" />
+                  <ion-icon name="search-outline"></ion-icon>
+               </label>
+            </div>
+            <button id="btn" type="button" class="btn btn-secondary" data-bs-toggle="modal"
+               data-bs-target="#modal-create">
                <i class="bi bi-person-plus-fill"></i>
             </button>
          </div>
@@ -20,26 +21,14 @@
                   <!-- <img id="image" :src="c.image" class="img-fluid rounded-start" alt="..." /> -->
 
                   <!-- Image client exist and is not loading a new image -->
-                  <img
-                     v-if="c.image && !c.url"
-                     :src="axios.defaults.baseURL + c.image"
-                     class="image-profile"
-                     :id="'client' + c.id"
-                  />
+                  <img v-if="c.image && !c.url" :src="axios.defaults.baseURL + c.image" class="image-profile"
+                     :id="'client' + c.id" />
                   <!-- Image client exist and uploaded a new image -->
-                  <img
-                     v-if="c.url && !loading"
-                     :src="c.url"
-                     class="image-profile"
-                     :id="'client' + c.id"
-                  />
+                  <img v-if="c.url && !loading" :src="c.url" class="image-profile" :id="'client' + c.id" />
 
                   <!-- Image client not exist and is not loading a new image -->
-                  <span
-                     v-if="!c.image && !loading"
-                     :id="'client' + c.id"
-                     class="material-symbols-outlined default-profile"
-                  >
+                  <span v-if="!c.image && !loading" :id="'client' + c.id"
+                     class="material-symbols-outlined default-profile">
                      account_circle
                   </span>
                </div>
@@ -51,36 +40,23 @@
                      <div class="data">
                         <h3>
                            edad: {{ c.age }}<br /><span>
-                              peso: {{ c.weight }}</span
-                           >
+                              peso: {{ c.weight }}</span>
                         </h3>
                         <h3>
                            paga:{{ c.rates }} <br />
                            <span> precio:{{ c.price }}</span>
                         </h3>
                         <h3>
-                           inicia:{{ c.fecha_inicio }}<br /><span
-                              >termina:{{ c.fecha_final }}</span
-                           >
+                           inicia:{{ c.fecha_inicio }}<br /><span>termina:{{ c.fecha_final }}</span>
                         </h3>
                      </div>
                      <div class="actionBtn">
-                        <button
-                           type="button"
-                           class="material-symbols-outlined"
-                           data-bs-toggle="modal"
-                           data-bs-target="#modal-edit"
-                           @click="edit_clients(c)"
-                        >
+                        <button type="button" class="material-symbols-outlined" data-bs-toggle="modal"
+                           data-bs-target="#modal-edit" @click="edit_clients(c)">
                            <i class="bi bi-pencil-square"></i>
                         </button>
-                        <button
-                           type="button"
-                           data-bs-target="#deleteUserModal"
-                           data-bs-toggle="modal"
-                           class="material-symbols-outlined"
-                           @click="edit_clients(c)"
-                        >
+                        <button type="button" data-bs-target="#deleteUserModal" data-bs-toggle="modal"
+                           class="material-symbols-outlined" @click="edit_clients(c)">
                            <i class="bi bi-trash3"></i>
                         </button>
                      </div>
@@ -88,141 +64,43 @@
                </div>
             </div>
          </div>
-         <!-- <table>
-        <thead>
-          <tr>
-            <td>photo</td>
-            <td>Name</td>
-            <td>Age</td>
-            <td>Weight</td>
-            <td>Nivel</td>
-            <td>Email</td>
-            <td>Injuries</td>
-            <td>Start Date</td>
-            <td>Finish Date</td>
-            <td>Payment Period</td>
-            <td>Price</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="c in clients" :key="'clients' + c.id">
-            <td>
-              <img id="image"
-                :src="c.image"
-                class="img-fluid rounded-start"
-                alt="..."
-              />
-            </td>
-            <td>{{ c.name }}</td>
-            <td>{{ c.age }}</td>
-            <td>{{ c.weight }}</td>
-            <td>{{ c.nivel }}</td>
-            <td>{{ c.email }}</td>
-            <td>{{ c.injures }}</td>
-            <td>{{ c.fecha_inicio }}</td>
-            <td>{{ c.fecha_final }}</td>
-            <td>{{ c.rates }}</td>
-            <td>{{ c.price }}</td>
-            <td>{{ c.companies_id }}</td>
 
-            <td>
-              <button
-                type="button"
-                class="btn btn"
-                data-bs-toggle="modal"
-                data-bs-target="#modal-edit"
-                @click="edit_clients(c)"
-              >
-                <i class="bi bi-pencil-square"></i>
-              </button>
-            </td>
-            <td>
-              <button
-                type="button"
-                data-bs-target="#deleteUserModal"
-                data-bs-toggle="modal"
-                class="btn material-symbols-outlined"
-                @click="edit_clients(c)"
-              >
-                <i class="bi bi-trash3"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table> -->
       </div>
    </div>
 
    <!-- Modal crear-->
-   <div
-      class="modal fade"
-      id="modal-create"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-hidden="true"
-   >
+   <div class="modal fade" id="modal-create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-hidden="true">
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
                <h5 class="modal-title" style="color: white">New client</h5>
-               <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-               ></button>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                <!-- Image management -->
                <section class="photo-container">
                   <div class="photo-prev">
-                     <input
-                        type="file"
-                        id="new-client-input"
-                        @change="show_image"
-                        style="display: none"
-                     />
+                     <input type="file" id="new-client-input" @change="show_image" style="display: none" />
                      <!-- Image client exist and is not loading a new image -->
                      <div class="preview" v-if="form.url && !loading">
-                        <span
-                           class="material-symbols-outlined clear-image"
-                           @click="clear_image('new-client-input')"
-                        >
+                        <span class="material-symbols-outlined clear-image" @click="clear_image('new-client-input')">
                            close
                         </span>
-                        <img
-                           @click="open_browser('new-client-input')"
-                           :src="form.url"
-                        />
+                        <img @click="open_browser('new-client-input')" :src="form.url" />
                      </div>
                      <!-- Image client not exist and is not loading a new image -->
-                     <span
-                        v-if="!form.url && !loading"
-                        class="material-symbols-outlined"
-                        @click="open_browser('new-client-input')"
-                     >
+                     <span v-if="!form.url && !loading" class="material-symbols-outlined"
+                        @click="open_browser('new-client-input')">
                         account_circle
                      </span>
 
-                     <div
-                        v-if="loading"
-                        class="loading"
-                        @click="open_browser('new-client-input')"
-                     ></div>
+                     <div v-if="loading" class="loading" @click="open_browser('new-client-input')"></div>
                      <!-- User can stop the image loading -->
-                     <span
-                        v-if="loading"
-                        class="image_text"
-                        :class="{ stop: loading }"
-                        @click="stop_loading()"
-                        @mouseover="image_text = 'Stop loading!'"
-                        @mouseleave="image_text = 'Loading...'"
-                        >{{ image_text }}</span
-                     >
-                     <span v-if="!loading" class="image_text"
-                        >Your profile photo</span
-                     >
+                     <span v-if="loading" class="image_text" :class="{ stop: loading }" @click="stop_loading()"
+                        @mouseover="image_text = 'Stop loading!'" @mouseleave="image_text = 'Loading...'">{{ image_text
+                        }}</span>
+                     <span v-if="!loading" class="image_text">Your profile photo</span>
                   </div>
                   <div class="form-text" v-if="errors.image">
                      {{ errors.image[0] }}
@@ -232,168 +110,86 @@
 
                <form class="form-tarifas">
                   <div id="izq">
-                     <div class="form-floating mb-3">
-                        <input
-                           type="text"
-                           name="name"
-                           v-model="form.name"
-                           class="form-control"
-                           id="floatingInput1"
-                        />
+                     <div id="inpus" class="form-floating mb-3">
+                        <input type="text" name="name" v-model="form.name" class="form-control" id="floatingInput1" />
                         <label for="floatingInput1">name</label>
                         <span style="color: aliceblue" v-if="errors.name">
-                           {{ errors.name }}</span
-                        >
+                           {{ errors.name }}</span>
                      </div>
-                     <div class="form-floating mb-3">
-                        <input
-                           type="email"
-                           name="email"
-                           v-model="form.email"
-                           class="form-control"
-                           id="floatingInput2"
-                           placeholder="name@example.com"
-                        />
+                     <div id="inpus" class="form-floating mb-3">
+                        <input type="email" name="email" v-model="form.email" class="form-control" id="floatingInput2"
+                           placeholder="name@example.com" />
                         <label for="floatingInput2"> email</label>
                         <span style="color: aliceblue" v-if="errors.email">
-                           {{ errors.email }}</span
-                        >
+                           {{ errors.email }}</span>
                      </div>
-                     <div class="form-floating mb-3">
-                        <input
-                           type="password"
-                           name="password"
-                           v-model="form.password"
-                           class="form-control"
-                           id="floatingInput3"
-                           placeholder="password"
-                        />
+                     <div id="inpus" class="form-floating mb-3">
+                        <input type="password" name="password" v-model="form.password" class="form-control"
+                           id="floatingInput3" placeholder="password" />
                         <label for="floatingInput3"> password</label>
                         <span style="color: aliceblue" v-if="errors.password">
-                           {{ errors.password }}</span
-                        >
+                           {{ errors.password }}</span>
                      </div>
-                     <div class="form-floating mb-3">
-                        <input
-                           type="password"
-                           name="password"
-                           v-model="form.password_confirmation"
-                           class="form-control"
-                           id="floatingInput4"
-                           placeholder="password_confirmation"
-                        />
-                        <label for="floatingInput4"
-                           >password confirmation</label
-                        >
-                        <span
-                           style="color: aliceblue"
-                           v-if="errors.password_confirmation"
-                        >
-                           {{ errors.password_confirmation }}</span
-                        >
+                     <div id="inpus" class="form-floating mb-3">
+                        <input type="password" name="password" v-model="form.password_confirmation" class="form-control"
+                           id="floatingInput4" placeholder="password_confirmation" />
+                        <label for="floatingInput4">password confirmation</label>
+                        <span style="color: aliceblue" v-if="errors.password_confirmation">
+                           {{ errors.password_confirmation }}</span>
                      </div>
-                     <div class="form-floating mb-3">
-                        <input
-                           type="number"
-                           name="age"
-                           v-model="form.age"
-                           class="form-control"
-                           id="floatingInput5"
-                           placeholder=""
-                        />
+                     <div id="inpus" class="form-floating mb-3">
+                        <input type="number" name="age" v-model="form.age" class="form-control" id="floatingInput5"
+                           placeholder="" />
                         <label for="floatingInput5">age</label>
                         <span style="color: aliceblue" v-if="errors.age">
-                           {{ errors.age }}</span
-                        >
+                           {{ errors.age }}</span>
                      </div>
-                     <div class="form-floating mb-3">
-                        <input
-                           type="number"
-                           name="weight"
-                           v-model="form.weight"
-                           class="form-control"
-                           id="floatingInput6"
-                           placeholder=""
-                        />
-                        <label for="floatingInput6"> weight</label>
-                        <span style="color: aliceblue" v-if="errors.weight">
-                           {{ errors.weight }}</span
-                        >
-                     </div>
+
                   </div>
 
                   <div id="dere">
-                     <div class="form-floating mb-3">
-                        <input
-                           type="text"
-                           name="nivel"
-                           v-model="form.nivel"
-                           class="form-control"
-                           id="floatingInput7"
-                           placeholder=""
-                        />
+                     <div id="inpus" class="form-floating mb-3">
+                        <input type="number" name="weight" v-model="form.weight" class="form-control"
+                           id="floatingInput6" placeholder="" />
+                        <label for="floatingInput6"> weight</label>
+                        <span style="color: aliceblue" v-if="errors.weight">
+                           {{ errors.weight }}</span>
+                     </div>
+                     <div id="inpus" class="form-floating mb-3">
+                        <input type="text" name="nivel" v-model="form.nivel" class="form-control" id="floatingInput7"
+                           placeholder="" />
                         <label for="floatingInput7"> nivel</label>
                         <span style="color: aliceblue" v-if="errors.nivel">
-                           {{ errors.nivel }}</span
-                        >
+                           {{ errors.nivel }}</span>
                      </div>
 
-                     <div class="form-floating mb-3">
-                        <input
-                           type="text"
-                           name="injures"
-                           v-model="form.injures"
-                           class="form-control"
-                           id="floatingInput8"
-                           placeholder=""
-                        />
+                     <div id="inpus" class="form-floating mb-3">
+                        <input type="text" name="injures" v-model="form.injures" class="form-control"
+                           id="floatingInput8" placeholder="" />
                         <label for="floatingInput8"> injures</label>
                         <span style="color: aliceblue" v-if="errors.injures">
-                           {{ errors.injures }}</span
-                        >
+                           {{ errors.injures }}</span>
                      </div>
-                     <div class="form-floating mb-3">
-                        <input
-                           type="date"
-                           name="injures"
-                           v-model="form.start_date"
-                           class="form-control"
-                           id="floatingInput9"
-                           placeholder=""
-                        />
+                     <div id="inpus" class="form-floating mb-3">
+                        <input type="date" name="injures" v-model="form.start_date" class="form-control"
+                           id="floatingInput9" placeholder="" />
                         <label for="floatingInput9"> start date</label>
                         <span style="color: aliceblue" v-if="errors.start_date">
-                           {{ errors.start_date }}</span
-                        >
+                           {{ errors.start_date }}</span>
                      </div>
-                     <div class="form-floating mb-3">
-                        <input
-                           type="date"
-                           name="injures"
-                           v-model="form.finish_date"
-                           class="form-control"
-                           id="floatingInput0"
-                           placeholder=""
-                        />
+                     <div id="inpus" class="form-floating mb-3">
+                        <input type="date" name="injures" v-model="form.finish_date" class="form-control"
+                           id="floatingInput0" placeholder="" />
                         <label for="floatingInput0"> finish date</label>
-                        <span
-                           style="color: aliceblue"
-                           v-if="errors.finish_date"
-                        >
-                           {{ errors.finish_date }}</span
-                        >
+                        <span style="color: aliceblue" v-if="errors.finish_date">
+                           {{ errors.finish_date }}</span>
                      </div>
                   </div>
                </form>
             </div>
             <div class="modal-footer">
-               <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal-create-rates"
-               >
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal"
+                  data-bs-target="#modal-create-rates">
                   select pago
                </button>
                <!-- <button type="button" class="btn btn-primary " @click="store()" data-bs-dismiss="modal"> created</button> -->
@@ -403,49 +199,28 @@
    </div>
 
    <!-- Modal crear rates -->
-   <div
-      class="modal fade"
-      id="modal-create-rates"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-hidden="true"
-   >
+   <div class="modal fade" id="modal-create-rates" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-hidden="true">
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
                <h5 class="modal-title">Modal title</h5>
-               <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-               ></button>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                <form class="form-tarifas">
-                  <article
-                     id="article"
-                     v-for="t in rates_list"
-                     :key="'rates_list' + t.id"
-                     @click="select_rate(t)"
-                  >
+                  <article id="article" v-for="t in rates_list" :key="'rates_list' + t.id" @click="select_rate(t)">
                      <p>
                         {{ t.name }}
                      </p>
                      <p>
-                        {{ t.price }}
+                        ${{ t.price }}
                      </p>
                   </article>
                </form>
             </div>
             <div class="modal-footer">
-               <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                  @click="store()"
-               >
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="store()">
                   crear
                </button>
             </div>
@@ -455,75 +230,38 @@
    <!-- Modal crear rates -->
 
    <!-- Modal editar-->
-   <div
-      class="modal fade"
-      id="modal-edit"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-hidden="true"
-   >
+   <div class="modal fade" id="modal-edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-hidden="true">
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
                <h5 class="modal-title" style="color: white">Edit client</h5>
-               <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-               ></button>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                <!-- Image management -->
                <section class="photo-container">
                   <div class="photo-prev">
-                     <input
-                        type="file"
-                        id="edit-client-input"
-                        @change="show_image"
-                        style="display: none"
-                     />
+                     <input type="file" id="edit-client-input" @change="show_image" style="display: none" />
 
                      <!-- Image client exist and is not loading a new image -->
                      <div class="preview" v-if="form.url && !loading">
-                        <span
-                           class="material-symbols-outlined clear-image"
-                           @click="clear_image('edit-client-input')"
-                        >
+                        <span class="material-symbols-outlined clear-image" @click="clear_image('edit-client-input')">
                            close
                         </span>
-                        <img
-                           @click="open_browser('edit-client-input')"
-                           :src="form.url"
-                        />
+                        <img @click="open_browser('edit-client-input')" :src="form.url" />
                      </div>
                      <!-- Image client not exist and is not loading a new image -->
-                     <span
-                        v-if="!form.url && !loading"
-                        class="material-symbols-outlined"
-                        @click="open_browser('edit-client-input')"
-                     >
+                     <span v-if="!form.url && !loading" class="material-symbols-outlined"
+                        @click="open_browser('edit-client-input')">
                         account_circle
                      </span>
-                     <div
-                        v-if="loading"
-                        class="loading"
-                        @click="open_browser('edit-client-input')"
-                     ></div>
+                     <div v-if="loading" class="loading" @click="open_browser('edit-client-input')"></div>
                      <!-- User can stop the image loading -->
-                     <span
-                        v-if="loading"
-                        class="image_text"
-                        :class="{ stop: loading }"
-                        @click="stop_loading()"
-                        @mouseover="image_text = 'Stop loading!'"
-                        @mouseleave="image_text = 'Loading...'"
-                        >{{ image_text }}</span
-                     >
-                     <span v-if="!loading" class="image_text"
-                        >Your profile photo</span
-                     >
+                     <span v-if="loading" class="image_text" :class="{ stop: loading }" @click="stop_loading()"
+                        @mouseover="image_text = 'Stop loading!'" @mouseleave="image_text = 'Loading...'">{{ image_text
+                        }}</span>
+                     <span v-if="!loading" class="image_text">Your profile photo</span>
                   </div>
                   <div class="form-text" v-if="errors.image">
                      {{ errors.image[0] }}
@@ -533,134 +271,71 @@
                <form class="form-tarifas">
                   <div id="izq">
                      <div class="form-floating mb-3">
-                        <input
-                           type="text"
-                           name="name"
-                           v-model="form.name"
-                           class="form-control"
-                           id="floatingInput1-edit"
-                        />
+                        <input type="text" name="name" v-model="form.name" class="form-control"
+                           id="floatingInput1-edit" />
                         <label for="floatingInput1-edit">name</label>
                         <span style="color: aliceblue" v-if="errors.name">
-                           {{ errors.name }}</span
-                        >
+                           {{ errors.name }}</span>
                      </div>
                      <div class="form-floating mb-3">
-                        <input
-                           type="email"
-                           name="email"
-                           v-model="form.email"
-                           class="form-control"
-                           id="floatingInput2-edit"
-                           placeholder="name@example.com"
-                        />
+                        <input type="email" name="email" v-model="form.email" class="form-control"
+                           id="floatingInput2-edit" placeholder="name@example.com" />
                         <label for="floatingInput2-edit"> email</label>
                         <span style="color: aliceblue" v-if="errors.email">
-                           {{ errors.email }}</span
-                        >
+                           {{ errors.email }}</span>
                      </div>
                      <div class="form-floating mb-3">
-                        <input
-                           type="number"
-                           name="age"
-                           v-model="form.age"
-                           class="form-control"
-                           id="floatingInput5-edit"
-                           placeholder=""
-                        />
+                        <input type="number" name="age" v-model="form.age" class="form-control" id="floatingInput5-edit"
+                           placeholder="" />
                         <label for="floatingInput5-edit">age</label>
                         <span style="color: aliceblue" v-if="errors.age">
-                           {{ errors.age }}</span
-                        >
+                           {{ errors.age }}</span>
                      </div>
                      <div class="form-floating mb-3">
-                        <input
-                           type="number"
-                           name="weight"
-                           v-model="form.weight"
-                           class="form-control"
-                           id="floatingInput6-edit"
-                           placeholder=""
-                        />
+                        <input type="number" name="weight" v-model="form.weight" class="form-control"
+                           id="floatingInput6-edit" placeholder="" />
                         <label for="floatingInput6-edit"> weight</label>
                         <span style="color: aliceblue" v-if="errors.weight">
-                           {{ errors.weight }}</span
-                        >
+                           {{ errors.weight }}</span>
                      </div>
                   </div>
 
                   <div id="dere">
                      <div class="form-floating mb-3">
-                        <input
-                           type="text"
-                           name="nivel"
-                           v-model="form.nivel"
-                           class="form-control"
-                           id="floatingInput7-edit"
-                           placeholder=""
-                        />
+                        <input type="text" name="nivel" v-model="form.nivel" class="form-control"
+                           id="floatingInput7-edit" placeholder="" />
                         <label for="floatingInput7-edit"> nivel</label>
                         <span style="color: aliceblue" v-if="errors.nivel">
-                           {{ errors.nivel }}</span
-                        >
+                           {{ errors.nivel }}</span>
                      </div>
 
                      <div class="form-floating mb-3">
-                        <input
-                           type="text"
-                           name="injures"
-                           v-model="form.injures"
-                           class="form-control"
-                           id="floatingInput8-edit"
-                           placeholder=""
-                        />
+                        <input type="text" name="injures" v-model="form.injures" class="form-control"
+                           id="floatingInput8-edit" placeholder="" />
                         <label for="floatingInput8-edit"> injures</label>
                         <span style="color: aliceblue" v-if="errors.injures">
-                           {{ errors.injures }}</span
-                        >
+                           {{ errors.injures }}</span>
                      </div>
                      <div class="form-floating mb-3">
-                        <input
-                           type="date"
-                           name="injures"
-                           v-model="form.start_date"
-                           class="form-control"
-                           id="floatingInput9-edit"
-                           placeholder=""
-                        />
+                        <input type="date" name="injures" v-model="form.start_date" class="form-control"
+                           id="floatingInput9-edit" placeholder="" />
                         <label for="floatingInput9-edit"> start date</label>
                         <span style="color: aliceblue" v-if="errors.start_date">
-                           {{ errors.start_date }}</span
-                        >
+                           {{ errors.start_date }}</span>
                      </div>
                      <div class="form-floating mb-3">
-                        <input
-                           type="date"
-                           name="injures"
-                           v-model="form.finish_date"
-                           class="form-control"
-                           id="floatingInput0-edit"
-                           placeholder=""
-                        />
+                        <input type="date" name="injures" v-model="form.finish_date" class="form-control"
+                           id="floatingInput0-edit" placeholder="" />
                         <label for="floatingInput0-edit"> finish date</label>
-                        <span
-                           style="color: aliceblue"
-                           v-if="errors.finish_date"
-                        >
-                           {{ errors.finish_date }}</span
-                        >
+                        <span style="color: aliceblue" v-if="errors.finish_date">
+                           {{ errors.finish_date }}</span>
                      </div>
                   </div>
                </form>
             </div>
             <div class="modal-footer">
-               <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal-edit-rates"
-               >
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal"
+                  data-bs-target="#modal-edit-rates">
                   select pago
                </button>
                <!-- <button type="button" class="btn btn-primary " @click="store()" data-bs-dismiss="modal"> created</button> -->
@@ -670,49 +345,28 @@
    </div>
 
    <!-- Modal editar rates -->
-   <div
-      class="modal fade"
-      id="modal-edit-rates"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-hidden="true"
-   >
+   <div class="modal fade" id="modal-edit-rates" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-hidden="true">
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
                <h5 class="modal-title">Modal title</h5>
-               <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-               ></button>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                <form class="form-tarifas">
-                  <article
-                     id="article"
-                     v-for="t in rates_list"
-                     :key="'rates_list_edit' + t.id"
-                     @click="select_rate(t)"
-                  >
+                  <article id="article" v-for="t in rates_list" :key="'rates_list_edit' + t.id" @click="select_rate(t)">
                      <p>
                         {{ t.name }}
                      </p>
                      <p>
-                        {{ t.price }}
+                        ${{ t.price }}
                      </p>
                   </article>
                </form>
             </div>
             <div class="modal-footer">
-               <button
-                  type="button"
-                  class="btn btn-secondary"
-                  @click="update(t)"
-                  data-bs-dismiss="modal"
-               >
+               <button type="button" class="btn btn-secondary" @click="update(t)" data-bs-dismiss="modal">
                   crear
                </button>
             </div>
@@ -722,23 +376,12 @@
    <!-- Modal editar rates -->
 
    <!-- Delete User Modal Start -->
-   <div
-      class="modal fade"
-      id="deleteUserModal"
-      tabindex="-1"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-   >
+   <div class="modal fade" id="deleteUserModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
                <h5 class="modal-title" id="exampleModalLabel">Delete Client</h5>
-               <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-               ></button>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                <h6>
@@ -918,11 +561,13 @@ export default {
             this.reset_form();
             this.modal_create.hide();
             this.modal_rates.hide();
+            this.reset_form();
          } catch (e) {
             console.log(e);
             this.error_message(e);
             this.modal_rates.hide();
             this.modal_create.show();
+
          }
       },
       //tarifa
