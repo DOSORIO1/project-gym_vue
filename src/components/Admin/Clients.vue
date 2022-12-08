@@ -209,7 +209,7 @@
             </div>
             <div class="modal-body">
                <form class="form-tarifas">
-                  <article id="article" v-for="t in rates_list" :key="'rates_list' + t.id" @click="select_rate(t)">
+                  <article class="active" id="article" v-for="t in rates_list" :key="'rates_list' + t.id" @click="select_rate(t)">
                      <p>
                         {{ t.name }}
                      </p>
