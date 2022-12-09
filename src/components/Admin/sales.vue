@@ -1,12 +1,15 @@
 <template>
-  <div class="container-table">
-    <table class="table">
+  <div class="container-sales" >
+    <div class="container-table"> 
+    <table >
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th>name</th>
+          <th >subtotal</th>
+          <th >total</th>
+          <th >date</th>
+          <th >reference</th>
+          <th >cantidad</th>
         </tr>
       </thead>
       <tbody>
@@ -17,12 +20,11 @@
           <td>{{s.date}}</td>
           <td>{{s.reference}}</td>
           <td>{{s.cantidad}}</td>
-        </tr>
-        
-        
+        </tr>              
       </tbody>
     </table>
   </div>
+</div>
 </template>
 <style scoped>
 @import "../../assets/css/sales.css";

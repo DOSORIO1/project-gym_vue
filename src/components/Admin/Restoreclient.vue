@@ -9,7 +9,7 @@
               <span class="overly"></span>
 
               <div class="card-image">
-                <img :src="r.image" alt="" class="card-img">
+                <img :src="axios.defaults.baseURL + r.image" alt="" class="card-img">
               </div>
             </div>
             <div class="card-content">

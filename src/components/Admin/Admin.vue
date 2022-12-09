@@ -15,68 +15,71 @@
           </a>
         </li>
         <li>
-          <a href="#">
+
+          <router-link class="hom" to="/Admin/Home">
             <span class="icon">
               <ion-icon name="home-sharp"></ion-icon>
             </span>
+            <p>home</p>
+          </router-link>
 
-            <router-link class="title" to="/Admin/Home">home</router-link>
-          </a>
         </li>
         <li>
-          <a href="#">
+
+
+          <router-link class="hom" to="/Admin/Clients">
             <span class="icon">
               <ion-icon name="person-sharp"></ion-icon>
             </span>
-            <router-link class="title" to="/Admin/Clients">Clients</router-link>
-          </a>
+            <p>Clients</p>
+          </router-link>
+
         </li>
         <li>
-          <a href="#">
-            <span class="icon">
+
+
+          <router-link class="hom" to="/Admin/Assists"><span class="icon">
               <ion-icon name="hand-right-outline"></ion-icon>
             </span>
-            <router-link class="title" to="/Admin/Assists">Assists</router-link>
-          </a>
+            <p>Assists</p>
+          </router-link>
+
         </li>
         <li>
-          <a href="#">
+
+
+          <router-link class="hom" to="/Admin/Sales">
             <span class="icon">
               <ion-icon name="bag-check-outline"></ion-icon>
             </span>
-            <router-link class="title" to="/Admin/Sales">Sales</router-link>
-          </a>
+            <p>Sales</p>
+          </router-link>
+
         </li>
         <li>
-          <a href="#">
+          <router-link class="hom" to="/Admin/Inventory">
             <span class="icon">
               <ion-icon name="bar-chart-outline"></ion-icon>
             </span>
-            <router-link class="title" to="/Admin/Inventory"
-              >inventori</router-link
-            >
-          </a>
+            <p>inventori</p>
+          </router-link>
         </li>
         <li>
-          <a href="#">
+          <router-link class="hom" to="/Admin/employed">
             <span class="icon">
               <ion-icon name="lock-closed-sharp"></ion-icon>
             </span>
-            <router-link class="title" to="/Admin/employed"
-              >emplooyed</router-link
-            >
-           
-          </a>
+            <p>emplooyed</p>
+          </router-link>
         </li>
         <li>
-          <a href="#">
+
+          <router-link class="hom" to="/Admin/Restoreclient">
             <span class="icon">
               <ion-icon name="log-in-sharp"></ion-icon>
             </span>
-            <router-link class="title" to="/Admin/Restoreclient"
-              >Restore client</router-link
-            >
-          </a>
+            <p>Restore client</p>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -88,20 +91,20 @@
         <ion-icon name="menu-outline"></ion-icon>
         <!-- search -->
       </div>
-      <h4><b>{{user.name}}</b></h4>
+      <h4>
+        <b>{{ user.name }}</b>
+      </h4>
       <!-- userImg -->
       <div class="dropdown">
-        <img
-          :src="user.image"
-          type="button"
-          class="user btn-secondary dropdown-toggle"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        />
+        <img :src="axios.defaults.baseURL + user.image" type="button" class="user btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+          aria-expanded="false" />
         <ul class="dropdown-menu">
           <li>
-            <ion-icon name="person-circle"></ion-icon>
-            <router-link class="title" to="/Admin/Home">My Profile</router-link>
+            
+            <router-link class="hom" to="/Admin/Home">
+              <ion-icon name="person-circle"></ion-icon>
+              <p>My Profile</p>
+            </router-link>
           </li>
           <li><ion-icon name="pencil"></ion-icon>Edit Profile</li>
           <li><ion-icon name="chatbox-ellipses"></ion-icon>Inbox</li>

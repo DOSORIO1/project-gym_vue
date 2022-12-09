@@ -93,10 +93,16 @@
   text-align: start;
   white-space: nowrap;
 }
+.hom{
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  text-decoration: none;
+}
 
 /* curve outside */
-.navigation ul li:hover a::before,
-.navigation ul li.hovered a::before {
+.navigation ul li:hover::before,
+.navigation ul li.hovered::before {
   content: "";
   position: absolute;
   right: 0;
