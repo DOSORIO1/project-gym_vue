@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <div class="container">
+    <div class="containere">
       <button
         id="btn"
         type="button"
@@ -48,7 +48,15 @@
               <br />
               <p class="descrition">Email: {{ e.email }}</p>
               <br />
-              <button class="button">Edit</button>
+              <button
+                type="button"
+                class="material-symbols-outlined"
+                data-bs-toggle="modal"
+                data-bs-target="#modal-edit"
+                @click="edit_clients(e)"
+              >
+                <i class="bi bi-pencil-square"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -207,6 +215,182 @@
       </div>
     </div>
   </div>
+  <!-- modal editar -->
+  <div
+    class="modal fade"
+    id="modal-edit"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="color: white">Edit client</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Image management -->
+          <section class="photo-container">
+            <div class="photo-prev">
+              <input
+                type="file"
+                id="edit-client-input"
+                @change="show_image"
+                style="display: none"
+              />
+
+              <!-- Image client exist and is not loading a new image -->
+              <div class="preview" v-if="form.url && !loading">
+                <span
+                  class="material-symbols-outlined clear-image"
+                  @click="clear_image('edit-client-input')"
+                >
+                  close
+                </span>
+                <img
+                  @click="open_browser('edit-client-input')"
+                  :src="form.url"
+                />
+              </div>
+              <!-- Image client not exist and is not loading a new image -->
+              <span
+                v-if="!form.url && !loading"
+                class="material-symbols-outlined"
+                @click="open_browser('edit-client-input')"
+              >
+                account_circle
+              </span>
+              <div
+                v-if="loading"
+                class="loading"
+                @click="open_browser('edit-client-input')"
+              ></div>
+              <!-- User can stop the image loading -->
+              <span
+                v-if="loading"
+                class="image_text"
+                :class="{ stop: loading }"
+                @click="stop_loading()"
+                @mouseover="image_text = 'Stop loading!'"
+                @mouseleave="image_text = 'Loading...'"
+                >{{ image_text }}</span
+              >
+              <span v-if="!loading" class="image_text">Your profile photo</span>
+            </div>
+            <div class="form-text" v-if="errors.image">
+              {{ errors.image[0] }}
+            </div>
+          </section>
+          <!-- Image management -->
+          <form class="form-tarifas">
+            <div id="izq">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  name="name"
+                  v-model="form.name"
+                  class="form-control"
+                  id="floatingInput1-edit"
+                />
+                <label for="floatingInput1-edit">name</label>
+                <span style="color: aliceblue" v-if="errors.name">
+                  {{ errors.name }}</span
+                >
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="email"
+                  name="email"
+                  v-model="form.email"
+                  class="form-control"
+                  id="floatingInput2-edit"
+                  placeholder="name@example.com"
+                />
+                <label for="floatingInput2-edit"> email</label>
+                <span style="color: aliceblue" v-if="errors.email">
+                  {{ errors.email }}</span
+                >
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            @click="update(e)"
+          >
+            update
+          </button>
+          <button
+            type="button"
+            data-bs-target="#deleteUserModal"
+            data-bs-toggle="modal"
+            class="material-symbols-outlined"
+            @click="edit_clients(c)"
+          >
+            <i class="bi bi-trash3"></i>
+          </button>
+          <!-- <button type="button" class="btn btn-primary " @click="store()" data-bs-dismiss="modal"> created</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Delete User Modal Start -->
+  <div
+    class="modal fade"
+    id="deleteUserModal"
+    tabindex="-1"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Client</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <h6>
+            <p>¿Deseas eliminar a este empleado?:</p>
+          </h6>
+          <!-- Image management -->
+          <section class="photo-container delete">
+            <div class="photo-prev">
+              <div v-if="form.url" class="preview">
+                <img :src="form.url" />
+              </div>
+              <span v-if="!form.url" class="material-symbols-outlined">
+                account_circle
+              </span>
+            </div>
+          </section>
+          <!-- Image management -->
+
+          <p class="delete">{{ form.name }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" @click="destroy">
+            Delete Client
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Delete User Modal End -->
 </template>
 <style scoped>
 @import "../../assets/css/employed.css";
@@ -335,6 +519,58 @@ export default {
         this.error_message(e);
       }
     },
+
+    async update(cliente, payment_id) {
+      const modal1 = document.getElementById("modal-edit");
+      this.modal_edit = bootstrap.Modal.getInstance(modal1);
+      try {
+        // console.log(this.form);
+        const id = this.form.id;
+        const res = await this.axios.post(
+          `/api/clients/update/${id}`,
+          this.form,
+          {
+            headers: {
+              //  Authorization: "Bearer " + localStorage.token,
+              "Content-Type": "multipart/form-data", //Permite enviar imágenes
+            },
+          }
+        );
+        // console.log(res.data);
+        this.employe();
+        this.reset_form();
+        this.modal_edit.hide();
+        
+        this.alert = res.data.message;
+        this.clear_image("edit-client-input");
+
+        this.modal.hide();
+        this.toast.show();
+      } catch (e) {
+        this.error_message(e);
+      }
+    },
+    async destroy() {
+      this.prepare_elements("deleteUserModal");
+
+      try {
+        const id = this.form.id;
+        console.log(this.form.id);
+        const res = await this.axios.delete(`/api/clients/${id}`, {
+          // headers: {
+          //   Authorization: "Bearer " + localStorage.token,
+          // },
+        });
+        this.employe();
+        this.alert = res.data.message;
+
+        this.modal.hide();
+        this.toast.show();
+      } catch (e) {
+        
+      }
+    },
+
     edit_clients(e) {
       this.form = e;
       this.form.preview = false;

@@ -1,15 +1,29 @@
 
 .body{
+ 
   display: flex;
   flex-flow: column;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 3.9rem);
+  /* border: 1px solid rebeccapurple; */
+}
+::-webkit-scrollbar{
+  display: none;
+}
+.containere{
+  display: flex;
+  flex-flow: column;
+  overflow: scroll;
 }
 .imagenes{
   width: 140px;
   border-radius: 100%;
   
   background-color: #fff;
+}
+#btn{
+  width: 40px;
+  background: #480069;
 }
 
 .content{
