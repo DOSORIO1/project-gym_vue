@@ -2,10 +2,10 @@
   <div class="details">
     <div class="recentorders">
       <div class="cardHeader">
-        <h2>Recent Order</h2>
+        <h2>attendances of clients</h2>
         <div>
-          <input type="date" class="form-control" v-model="start_date"/>
-          <input type="date" class="form-control" v-model="finish_date"/>
+          <input id="lis" type="date" class="form-control" v-model="start_date"/>
+          <input id="lis" type="date" class="form-control" v-model="finish_date"/>
           <input type="button" value="Listar" @click="get_asistencias()">
         </div>
       </div>
@@ -45,7 +45,7 @@ export default {
       this.user = JSON.parse(localStorage.user);
       this.form.user_id = this.user.id;
       this.form.companies_id = this.user.companies_id;
-
+      
       this.start_date = new Date().toISOString().substring(0, 10)
       this.finish_date = new Date().toISOString().substring(0, 10)
 

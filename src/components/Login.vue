@@ -147,7 +147,7 @@ export default {
 
                     case 2:
                         this.$router.push({
-                            name: "Admin",
+                            path: "/Admin/Home",
                         });
                         break;
 

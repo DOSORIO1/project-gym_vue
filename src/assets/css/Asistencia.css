@@ -138,3 +138,11 @@ img{
 .recencustomers table tr:hover td h4 span{
   color: #fff;
 }
+
+#lis{
+   margin: 6px;
+}
+#lis:hover{
+  color: blue;
+  border: .3px solid blue;
+}
