@@ -2,86 +2,50 @@
   <div class="todo">
     <video src="../assets/image/bg.mp4" autoplay muted loop type="mp4"></video>
     <div class="container" id="container">
-      <div class="form-container sign-up-container">
-        <form action="#">
-          <h1>Create Account</h1>
-          <span>or use your email for registration</span>
-          <input
-            type="text"
-            name="name"
-            v-model="form2.name"
-            placeholder="name"
-          />
-          <span v-if="errors.name">{{ errors.name[0] }}</span>
-          <input
-            type="text"
-            name="email"
-            v-model="form2.email"
-            placeholder="Email"
-          />
-          <span v-if="errors.email">{{ errors.email[0] }}</span>
-
-          <input
-            type="password"
-            name="password"
-            v-model="form2.password"
-            placeholder="Password"
-          />
-          <span v-if="errors.password">{{ errors.password[0] }}</span>
-
-          <input
-            type="password"
-            name="password"
-            v-model="form2.password_confirmation"
-            placeholder="confirm Password"
-          />
-          <span v-if="errors.password_confirmation">{{
-            errors.password_confirmation[0]
-          }}</span>
-
-          <button @click="register()" type="button">Sign Up</button>
-        </form>
-      </div>
-<!-- ///////////////////////// -->
       <div class="form-container sign-in-container">
         <form action="#">
           <h1>Sign in</h1>
           <span>or use your account</span>
-          <input
-            type="text"
-            name="email"
-            v-model="form.email"
-            placeholder="Email"
-          />
+          <input type="text" name="email" v-model="form.email" placeholder="Email" />
           <span class="error-message" v-if="errors.email">
             {{ errors.email[0] }}
           </span>
 
-          <input
-            type="password"
-            name="password"
-            v-model="form.password"
-            placeholder="Password"
-          />
+          <input type="password" name="password" v-model="form.password" placeholder="Password" />
           <span class="error-message" v-if="errors.password">
             {{ errors.password[0] }}
           </span>
 
           <p style="color: black" v-if="message">{{ message }}</p>
 
-          <button
-            class="btn btn-lg active"
-            aria-pressed="true"
-            type="button"
-            @click="login()"
-          >
+          <button class="btn btn-lg active" aria-pressed="true" type="button" @click="login()">
             Sign In
           </button>
-          <router-link class="link" to="/forgot-password"
-            >Olvidaste tu contraseña?</router-link
-          >
+          <router-link class="link" to="/forgot-password">Olvidaste tu contraseña?</router-link>
         </form>
       </div>
+      <div class="form-container sign-up-container">
+        <form action="#">
+          <h1>Create Account</h1>
+          <span>or use your email for registration</span>
+          <input type="text" name="name" v-model="form2.name" placeholder="name" />
+          <span v-if="errors.name">{{ errors.name[0] }}</span>
+          <input type="text" name="email" v-model="form2.email" placeholder="Email" />
+          <span v-if="errors.email">{{ errors.email[0] }}</span>
+
+          <input type="password" name="password" v-model="form2.password" placeholder="Password" />
+          <span v-if="errors.password">{{ errors.password[0] }}</span>
+
+          <input type="password" name="password" v-model="form2.password_confirmation" placeholder="confirm Password" />
+          <span v-if="errors.password_confirmation">{{
+              errors.password_confirmation[0]
+          }}</span>
+
+          <button @click="register()" type="button">Sign Up</button>
+        </form>
+      </div>
+      <!-- ///////////////////////// -->
+
       <div class="overlay-container">
         <div class="overlay">
           <div class="overlay-panel overlay-left">
@@ -183,6 +147,7 @@ export default {
         localStorage.token = rs.data.token;
         localStorage.user = JSON.stringify(rs.data.user);
       } catch (e) {
+        console.log(e)
         (this.errors = {}), (this.message = null);
 
         if (e.response.data.errors) this.errors = e.response.data.errors;

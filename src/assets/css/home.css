@@ -177,3 +177,26 @@ article{
     }
   }
   
+  #grafica{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 100px;
+    
+    background: #fff;
+
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+
+    height: 80%;
+}
+.grafi{
+    width: 600px !important;
+    height: 600px !important;
+}
+.grafi1{
+  width: 900px !important;
+  height: 500px !important;
+}
