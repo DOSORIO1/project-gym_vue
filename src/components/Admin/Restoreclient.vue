@@ -19,6 +19,7 @@
               </p>
               <p>date delete: {{ r.deleted_at }}</p>
               <br>
+            
               <span @click="edit(r)" class="btn material-symbols-outlined" data-bs-toggle="modal"
                 data-bs-target="#restoreUserModal">
                 restore
@@ -44,19 +45,6 @@
             <h6>
               <p>¿Deseas restablecer a este cliente?:</p>
             </h6>
-            <!-- Image management -->
-            <section class="photo-container delete">
-              <div class="photo-prev">
-                <div v-if="form.url" class="preview">
-                  <img :src="form.url" />
-                </div>
-                <span v-if="!form.url" class="material-symbols-outlined">
-                  account_circle
-                </span>
-              </div>
-            </section>
-            <!-- Image management -->
-
             <p class="delete">{{ form.name }}</p>
           </div>
           <div class="modal-footer">

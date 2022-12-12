@@ -5,8 +5,7 @@
 }
 
 .todo{
-  
-    background-image: url(../images/img58.jpg);
+     z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,6 +16,11 @@
    
 
     
+}
+video{
+    position: fixed;
+    transform: skewX(-20deg);
+    background: rgb(0, 0, 0) !important;
 }
 
 h1 {

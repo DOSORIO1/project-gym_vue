@@ -5,7 +5,7 @@
 .cr_tainer {
   display: flex;
   flex-wrap: wrap;
-  height: calc(100% - 12rem);
+  height: calc(100% - 8rem);
   width: 85vw;
   overflow: scroll;
 }
@@ -48,7 +48,7 @@
   position: relative;
   width: 400px;
   margin: 0 10px;
-  top: -2rem;
+  top: -1rem;
 }
 
 .search label {
@@ -261,6 +261,8 @@
   font-family: titulo;
   src: url(../assets/img/Brothery.ttf);
 }
+
+
 
 .img-fluid {
   width: 80px;

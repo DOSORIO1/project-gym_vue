@@ -21,7 +21,7 @@
         </thead>
         <tbody>
           <tr v-for="a in asistencias" :key="'asistencias' + a.id">
-            <td><img :src="a.image" alt="" /></td>
+            <td><img :src=" axios.defaults.baseURL  + a.image" alt="" /></td>
             <td>{{ a.name }}</td>
             <td>{{ a.date }}</td>
             <td>{{ a.time }}</td>

@@ -48,7 +48,8 @@
               <br />
               <p class="descrition">Email: {{ e.email }}</p>
               <br />
-              <button
+              <div id="btn_funciones">
+                <button id="editar"
                 type="button"
                 class="material-symbols-outlined"
                 data-bs-toggle="modal"
@@ -57,6 +58,18 @@
               >
                 <i class="bi bi-pencil-square"></i>
               </button>
+              <button
+              id="editar"
+                type="button"
+                data-bs-target="#deleteUserModal"
+                data-bs-toggle="modal"
+                class="material-symbols-outlined"
+                @click="edit_clients(c)"
+              >
+                <i class="bi bi-trash3"></i>
+              </button>
+              </div>
+              
             </div>
           </div>
         </div>
@@ -330,15 +343,7 @@
           >
             update
           </button>
-          <button
-            type="button"
-            data-bs-target="#deleteUserModal"
-            data-bs-toggle="modal"
-            class="material-symbols-outlined"
-            @click="edit_clients(c)"
-          >
-            <i class="bi bi-trash3"></i>
-          </button>
+
           <!-- <button type="button" class="btn btn-primary " @click="store()" data-bs-dismiss="modal"> created</button> -->
         </div>
       </div>
@@ -520,14 +525,14 @@ export default {
       }
     },
 
-    async update(cliente, payment_id) {
+    async update(cliente) {
       const modal1 = document.getElementById("modal-edit");
       this.modal_edit = bootstrap.Modal.getInstance(modal1);
       try {
         // console.log(this.form);
         const id = this.form.id;
         const res = await this.axios.post(
-          `/api/clients/update/${id}`,
+          `/api/client/update/${id}`,
           this.form,
           {
             headers: {
@@ -540,7 +545,7 @@ export default {
         this.employe();
         this.reset_form();
         this.modal_edit.hide();
-        
+
         this.alert = res.data.message;
         this.clear_image("edit-client-input");
 
@@ -566,9 +571,7 @@ export default {
 
         this.modal.hide();
         this.toast.show();
-      } catch (e) {
-        
-      }
+      } catch (e) {}
     },
 
     edit_clients(e) {

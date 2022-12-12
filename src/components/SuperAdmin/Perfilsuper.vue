@@ -5,7 +5,7 @@
   <div class="container-perfil">
     <section class="section1">
       <div id="perfil">
-        <img id="foto" :src="user.image" alt="" />
+        <img id="foto" :src="axios.defaults.baseURL + user.image" alt="" />
         <p>{{ user.name }}</p>
         <p>Email: {{ user.email }}</p>
 

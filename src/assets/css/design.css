@@ -1,10 +1,20 @@
+@font-face {
+  font-family: letra;
+  src: url(../img/Vertigo.ttf);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Ubuntu", sans-serif;
 }
-
+#titulo_name{
+  margin-top: 18px;
+  font-family: letra;
+  font-size: 2rem;
+  
+}
 :root {
   --blue: #287bff;
   --white: #fff;
@@ -253,6 +263,7 @@
 .dropdown{
   margin-top: 20px;
   margin-right: 15px;
+  z-index: 1;
 }
 
 .dropdown ul {

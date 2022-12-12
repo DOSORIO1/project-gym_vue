@@ -2,7 +2,7 @@
   <div class="conta_iner">
     <div class="recentorders">
       <div class="cardHeader">
-        <h2>CLIENTS</h2>
+       
         <div class="search">
           <label>
             <input  v-model="search" @keyup="filtrar" type="search" placeholder="Search" />

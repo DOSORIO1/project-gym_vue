@@ -15,46 +15,36 @@
           </a>
         </li>
         <li>
-
           <router-link class="hom" to="/Admin/Home">
             <span class="icon">
               <ion-icon name="home-sharp"></ion-icon>
             </span>
             <p>home</p>
           </router-link>
-
         </li>
         <li>
-
-
           <router-link class="hom" to="/Admin/Clients">
             <span class="icon">
               <ion-icon name="person-sharp"></ion-icon>
             </span>
             <p>Clients</p>
           </router-link>
-
         </li>
         <li>
-
-
-          <router-link class="hom" to="/Admin/Assists"><span class="icon">
+          <router-link class="hom" to="/Admin/Assists"
+            ><span class="icon">
               <ion-icon name="hand-right-outline"></ion-icon>
             </span>
             <p>Assists</p>
           </router-link>
-
         </li>
         <li>
-
-
           <router-link class="hom" to="/Admin/Sales">
             <span class="icon">
               <ion-icon name="bag-check-outline"></ion-icon>
             </span>
             <p>Sales</p>
           </router-link>
-
         </li>
         <li>
           <router-link class="hom" to="/Admin/Inventory">
@@ -73,7 +63,6 @@
           </router-link>
         </li>
         <li>
-
           <router-link class="hom" to="/Admin/Restoreclient">
             <span class="icon">
               <ion-icon name="log-in-sharp"></ion-icon>
@@ -91,23 +80,32 @@
         <ion-icon name="menu-outline"></ion-icon>
         <!-- search -->
       </div>
-      <h4>
-        <b>{{ user.name }}</b>
+      <h4 id="titulo_name">
+        <b id="titulo_name">{{ user.name }}</b>
       </h4>
       <!-- userImg -->
       <div class="dropdown">
-        <img :src="axios.defaults.baseURL + user.image" type="button" class="user btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
-          aria-expanded="false" />
+        <img
+          :src="axios.defaults.baseURL + user.image"
+          type="button"
+          class="user btn-secondary dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        />
         <ul class="dropdown-menu">
           <li>
-            
             <router-link class="hom" to="/Admin/Home">
               <ion-icon name="person-circle"></ion-icon>
               <p>My Profile</p>
             </router-link>
           </li>
-          <li><ion-icon name="pencil"></ion-icon>Edit Profile</li>
-          <li><ion-icon name="chatbox-ellipses"></ion-icon>Inbox</li>
+          <li>
+            <router-link class="hom" to="/Admin/Home">
+              <ion-icon name="pencil"></ion-icon>
+              <p>Edit Profile</p>
+            </router-link>
+          </li>
+
           <li @click="logout()"><ion-icon name="exit"></ion-icon>Sing Out</li>
         </ul>
       </div>
@@ -117,6 +115,8 @@
       <router-view></router-view>
     </div>
   </div>
+
+  <!-- ///////////////////////////////////////////// -->
 </template>
 <script>
 // MenuToggle

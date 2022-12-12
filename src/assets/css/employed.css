@@ -79,12 +79,26 @@
     text-decoration: none;
     font-weight: 500;
 }
+#btn_funciones{
+  display: flex;
+}
+#editar{
+  margin: 10px;
+  border: none;
+  background: #0864f9;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
 
+}
 
 
 
 /* estilos de fotos */
-
+ .imagenes{
+  height: 100%;
+ }
 .car .imgBx::before {
     content: "";
     position: absolute;
@@ -117,14 +131,7 @@
     inset: 3px;
     background: #292929;
   }
-  .car .imgBx img {
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    z-index: 1;
-    width: calc(100% - 30px);
-    height: calc(100% - 20px);
-  }
+ 
   .car .content {
     position: absolute;
     width: 100%;
@@ -233,7 +240,7 @@
     margin-top: -0.5rem;
     position: relative;
   }
-  .photo-container .photo-prev .preview img {
+  img {
     margin-top: 0.5rem;
     width: 12rem;
     height: 11rem;
