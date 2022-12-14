@@ -6,56 +6,93 @@
         <span id="texto">
           <p>{{ user.name }}</p>
           <p>{{ user.email }}</p>
-          <button id="edit-profile" type="button" class="material-symbols-outlined" data-bs-toggle="modal"
-            data-bs-target="#modal-edit" @click="edit_clients(user)">
+          <button
+            id="edit-profile"
+            type="button"
+            class="material-symbols-outlined"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-edit"
+            @click="edit_clients(user)"
+          >
             <i class="bi bi-pencil-square"></i>
           </button>
         </span>
       </article>
     </div>
-    <br>
+    <br />
     <div id="grafica">
-
-    <canvas class="grafi" id="dimensions"></canvas>
-    <canvas class="grafi1" id="acquisitions"></canvas>
-
-  </div>
+      <canvas class="grafi" id="dimensions"></canvas>
+      <canvas class="grafi1" id="acquisitions"></canvas>
+    </div>
   </main>
 
-  
-
   <!-- modal editar -->
-  <div class="modal fade" id="modal-edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-hidden="true">
+  <div
+    class="modal fade"
+    id="modal-edit"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-hidden="true"
+  >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" style="color: white">Edit client</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
           <!-- Image management -->
           <section class="photo-container">
             <div class="photo-prev">
-              <input type="file" id="edit-client-input" @change="show_image" style="display: none" />
+              <input
+                type="file"
+                id="edit-client-input"
+                @change="show_image"
+                style="display: none"
+              />
 
               <!-- Image client exist and is not loading a new image -->
               <div class="preview" v-if="form.url && !loading">
-                <span class="material-symbols-outlined clear-image" @click="clear_image('edit-client-input')">
+                <span
+                  class="material-symbols-outlined clear-image"
+                  @click="clear_image('edit-client-input')"
+                >
                   close
                 </span>
-                <img @click="open_browser('edit-client-input')" :src="form.url" />
+                <img
+                  @click="open_browser('edit-client-input')"
+                  :src="form.url"
+                />
               </div>
               <!-- Image client not exist and is not loading a new image -->
-              <span v-if="!form.url && !loading" class="material-symbols-outlined"
-                @click="open_browser('edit-client-input')">
+              <span
+                v-if="!form.url && !loading"
+                class="material-symbols-outlined"
+                @click="open_browser('edit-client-input')"
+              >
                 account_circle
               </span>
-              <div v-if="loading" class="loading" @click="open_browser('edit-client-input')"></div>
+              <div
+                v-if="loading"
+                class="loading"
+                @click="open_browser('edit-client-input')"
+              ></div>
               <!-- User can stop the image loading -->
-              <span v-if="loading" class="image_text" :class="{ stop: loading }" @click="stop_loading()"
-                @mouseover="image_text = 'Stop loading!'" @mouseleave="image_text = 'Loading...'">{{ image_text
-                }}</span>
+              <span
+                v-if="loading"
+                class="image_text"
+                :class="{ stop: loading }"
+                @click="stop_loading()"
+                @mouseover="image_text = 'Stop loading!'"
+                @mouseleave="image_text = 'Loading...'"
+                >{{ image_text }}</span
+              >
               <span v-if="!loading" class="image_text">Your profile photo</span>
             </div>
           </section>
@@ -63,15 +100,27 @@
           <form class="form-tarifas">
             <div id="izq">
               <div class="form-floating mb-3">
-                <input type="text" name="name" v-model="form.name" class="form-control" id="floatingInput1-edit" />
+                <input
+                  type="text"
+                  name="name"
+                  v-model="form.name"
+                  class="form-control"
+                  id="floatingInput1-edit"
+                />
                 <label for="floatingInput1-edit">name</label>
                 <span class="error-message" v-if="errors.name">
                   {{ errors.name[0] }}
                 </span>
               </div>
               <div class="form-floating mb-3">
-                <input type="email" name="email" v-model="form.email" class="form-control" id="floatingInput2-edit"
-                  placeholder="name@example.com" />
+                <input
+                  type="email"
+                  name="email"
+                  v-model="form.email"
+                  class="form-control"
+                  id="floatingInput2-edit"
+                  placeholder="name@example.com"
+                />
                 <label for="floatingInput2-edit"> email</label>
                 <span class="error-message" v-if="errors.email">
                   {{ errors.email[0] }}
@@ -81,7 +130,12 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="update(user)">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            @click="update(user)"
+          >
             update
           </button>
 
@@ -96,7 +150,7 @@
 @import "../../assets/css/home.css";
 </style>
 <script>
-import { Chart } from '../../../node_modules/chart.js/auto/auto'
+import { Chart } from "../../../node_modules/chart.js/auto/auto";
 
 export default {
   data() {
@@ -115,7 +169,7 @@ export default {
         preview: null,
         updated: null,
       },
-      errors: {}
+      errors: {},
     };
   },
   mounted() {
@@ -135,42 +189,49 @@ export default {
     // Obtener una referencia al elemento canvas del DOM
     const $grafica = document.querySelector("#dimensions");
     // Las etiquetas son las porciones de la gráfica
-    const etiquetas = ["Ventas", "Donaciones", "Trabajos", "Publicidad", "Desempleo", "Entrega", "Diversa"]
+    const etiquetas = [
+      "Ventas",
+      "Donaciones",
+      "Trabajos",
+      "Publicidad",
+      "Desempleo",
+      "Entrega",
+      "Diversa",
+    ];
     // Podemos tener varios conjuntos de datos. Comencemos con uno
     const datosIngresos = {
       data: [7000, 4000, 7000, 4000, 7000, 5000, 3000], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
       // Ahora debería haber tantos background colors como datos, es decir, para este ejemplo, 4
       backgroundColor: [
-        'rgba(163,221,203,2.2)',
-        'rgba(232,233,161,2.2)',
-        'rgba(230,181,102,2.2)',
-        'rgba(229,112,126,2.2)',
-        'rgba(132,212,166,2.2)',
-        'rgba(222,241,29,2.2)',
-        'rgba(27,229,223,2.2)',
-      ],// Color de fondo
+        "rgba(163,221,203,2.2)",
+        "rgba(232,233,161,2.2)",
+        "rgba(230,181,102,2.2)",
+        "rgba(229,112,126,2.2)",
+        "rgba(132,212,166,2.2)",
+        "rgba(222,241,29,2.2)",
+        "rgba(27,229,223,2.2)",
+      ], // Color de fondo
       borderColor: [
-        'rgba(163,221,203,1)',
-        'rgba(232,233,161,1)',
-        'rgba(230,181,102,1)',
-        'rgba(229,112,126,1)',
-        'rgba(132,212,166,1)',
-        'rgba(222,241,29,1)',
-        'rgba(27,229,223,1)',
-      ],// Color del borde
-      borderWidth: 1,// Ancho del borde
+        "rgba(163,221,203,1)",
+        "rgba(232,233,161,1)",
+        "rgba(230,181,102,1)",
+        "rgba(229,112,126,1)",
+        "rgba(132,212,166,1)",
+        "rgba(222,241,29,1)",
+        "rgba(27,229,223,1)",
+      ], // Color del borde
+      borderWidth: 1, // Ancho del borde
     };
     new Chart($grafica, {
-      type: 'pie',// Tipo de gráfica. Puede ser dougnhut o pie
+      type: "pie", // Tipo de gráfica. Puede ser dougnhut o pie
       data: {
         labels: etiquetas,
         datasets: [
           datosIngresos,
           // Aquí más datos...
-        ]
+        ],
       },
     });
-
 
     // Segunda tabla ////
     (async function () {
@@ -184,23 +245,19 @@ export default {
         { year: 2016, count: 28 },
       ];
 
-      new Chart(
-        document.getElementById('acquisitions'),
-        {
-          type: 'bar',
-          data: {
-            labels: data.map(row => row.year),
-            datasets: [
-              {
-                label: 'Acquisitions by year',
-                data: data.map(row => row.count)
-              }
-            ]
-          }
-        }
-      );
+      new Chart(document.getElementById("acquisitions"), {
+        type: "bar",
+        data: {
+          labels: data.map((row) => row.year),
+          datasets: [
+            {
+              label: "Acquisitions by year",
+              data: data.map((row) => row.count),
+            },
+          ],
+        },
+      });
     })();
-    
   },
   methods: {
     async get_user() {

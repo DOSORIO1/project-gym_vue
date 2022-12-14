@@ -475,7 +475,7 @@
           <!-- Image management -->
           <form class="form-tarifas">
             <div id="izq">
-              <div class="form-floating mb-3">
+              <div id="inpus" class="form-floating mb-3">
                 <input
                   type="text"
                   name="name"
@@ -488,7 +488,7 @@
                   {{ errors.name }}</span
                 >
               </div>
-              <div class="form-floating mb-3">
+              <div id="inpus" class="form-floating mb-3">
                 <input
                   type="email"
                   name="email"
@@ -502,7 +502,7 @@
                   {{ errors.email }}</span
                 >
               </div>
-              <div class="form-floating mb-3">
+              <div id="inpus" class="form-floating mb-3">
                 <input
                   type="number"
                   name="age"
@@ -516,7 +516,7 @@
                   {{ errors.age }}</span
                 >
               </div>
-              <div class="form-floating mb-3">
+              <div id="inpus" class="form-floating mb-3">
                 <input
                   type="number"
                   name="weight"
@@ -533,7 +533,7 @@
             </div>
 
             <div id="dere">
-              <div class="form-floating mb-3">
+              <div id="inpus" class="form-floating mb-3">
                 <input
                   type="text"
                   name="nivel"
@@ -548,7 +548,7 @@
                 >
               </div>
 
-              <div class="form-floating mb-3">
+              <div id="inpus" class="form-floating mb-3">
                 <input
                   type="text"
                   name="injures"
@@ -562,7 +562,7 @@
                   {{ errors.injures }}</span
                 >
               </div>
-              <div class="form-floating mb-3">
+              <div id="inpus" class="form-floating mb-3">
                 <input
                   type="date"
                   name="injures"
@@ -576,7 +576,7 @@
                   {{ errors.start_date }}</span
                 >
               </div>
-              <div class="form-floating mb-3">
+              <div id="inpus" class="form-floating mb-3">
                 <input
                   type="date"
                   name="injures"

@@ -4,8 +4,9 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>name</th>
-            <th>ventas del empleado</th>
+            <th>name of employee</th>
+            <th>product</th>
+            <th>ventas</th>
             <th>reference</th>
             <th>venta local</th>
             <th>valor-uni</th>
@@ -16,6 +17,7 @@
         <tbody>
           <tr v-for="s in sales" :key="'sales' + s.id">
             <th scope="row">{{ s.name }}</th>
+            <td>{{ s.product}}</td>
             <td>{{ s.cantidad_ventas }}</td>
             <td>{{ s.reference }}</td>
             <td>{{ s.local_sale }}</td>

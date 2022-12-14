@@ -49,27 +49,27 @@
               <p class="descrition">Email: {{ e.email }}</p>
               <br />
               <div id="btn_funciones">
-                <button id="editar"
-                type="button"
-                class="material-symbols-outlined"
-                data-bs-toggle="modal"
-                data-bs-target="#modal-edit"
-                @click="edit_clients(e)"
-              >
-                <i class="bi bi-pencil-square"></i>
-              </button>
-              <button
-              id="editar"
-                type="button"
-                data-bs-target="#deleteUserModal"
-                data-bs-toggle="modal"
-                class="material-symbols-outlined"
-                @click="edit_clients(c)"
-              >
-                <i class="bi bi-trash3"></i>
-              </button>
+                <button
+                  id="editar"
+                  type="button"
+                  class="material-symbols-outlined"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal-edit"
+                  @click="edit_clients(e)"
+                >
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+                <button
+                  id="editar"
+                  type="button"
+                  data-bs-target="#deleteUserModal"
+                  data-bs-toggle="modal"
+                  class="material-symbols-outlined"
+                  @click="edit_clients(c)"
+                >
+                  <i class="bi bi-trash3"></i>
+                </button>
               </div>
-              
             </div>
           </div>
         </div>
@@ -491,11 +491,13 @@ export default {
 
       try {
         let rs = await this.axios.get(
-          `/api/clients/?companies_id=${companies_id}`
-
-          // {
-          //   headers: { Authorization: "Bearer " + this.token },
-          // }
+          `/api/clients/?companies_id=${companies_id}`,
+          {
+            headers: {
+              // Authorization: "Bearer " + localStorage.token,
+              "Content-Type": "multipart/form-data", //Permite enviar imágenes
+            },
+          }
         );
 
         this.employed = rs.data.employed_list;
