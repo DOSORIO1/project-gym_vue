@@ -15,7 +15,7 @@
   margin-left: 4rem;
   width: 340px;
   height: 330px;
-  background: #333;
+ 
   transition: 0.5s;
 }
 
@@ -100,7 +100,11 @@
 }
 
 
-
+.person_icon{
+  color: whitesmoke;
+  font-size: 4rem;
+  z-index: 10;
+}
 
 
 .car .lines {
@@ -152,7 +156,7 @@
   height: 150px;
   background: #000;
   transition: 0.5s;
-  z-index: 10;
+  
   overflow: hidden;
 }
 

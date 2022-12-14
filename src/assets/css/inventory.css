@@ -46,6 +46,13 @@
     border: 1px solid rebeccapurple;
 
 }
+#editar{
+  height: 35px;
+  width: 35px;
+}
+.imagenes{
+  height: 100%;
+ }
 /* ///////////////////////////////////////////////////////////////////////// */
 .img-fluid {
     width: 80px;

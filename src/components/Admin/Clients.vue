@@ -44,7 +44,7 @@
             <span
               v-if="!c.image && !loading"
               :id="'client' + c.id"
-              class="material-symbols-outlined default-profile"
+              class="person_icon material-symbols-outlined default-profile"
             >
               account_circle
             </span>
