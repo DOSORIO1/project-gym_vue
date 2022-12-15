@@ -49,14 +49,37 @@ export default {
     this.get_sales();
   },
   data() {
+
     return {
       user: null,
       sales: [],
+
+      user: null,
+      toast: null,
+      modal: null,
+      form_copy: {},
+      loading: false,
+      image_text: "Loading image...",
+      alert: "",
+      modal_create: null,
       form: {
+        id: null,
+        name: "",
+        email: "",
+        roles_id: "",
+        password: "",
+        password_confirmation: "",
         companies_id: "",
-        user_id: null,
+        user_id: "",
+        // images //
+        image: "",
+        url: null,
+        preview: null,
+        updated: null,
       },
+      errors: {},
     };
+
   },
 
   methods: {
@@ -74,6 +97,19 @@ export default {
       } catch (e) {
         console.log(e);
       }
+    },
+    edit_clients(s) {
+      this.form = s;
+      console.log(s);
+      this.form.preview = false;
+      this.form.updated = null;
+      this.form.url = this.form.image
+        ? this.axios.defaults.baseURL + this.form.image
+        : null;
+      this.form_copy = Object.assign({}, this.form);
+
+      this.image_text = "You profile photo";
+      this.loading = false;
     },
   },
 };

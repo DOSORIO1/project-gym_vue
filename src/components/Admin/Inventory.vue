@@ -56,15 +56,7 @@
             >
               <i class="bi bi-pencil-square"></i>
             </button>
-            <button
-              id="editar"
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#modal-edit"
-              @click="edit_clients(i)"
-            >
-              <i class="bi bi-pencil-square"></i>
-            </button>
+            
           </span>
         </div>
       </div>

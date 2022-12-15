@@ -59,6 +59,7 @@
                   <thead>
                     <tr>
                       <th scope="col">edad</th>
+                      <th scope="col">dni</th>
                       <th scope="col">weight</th>
                       <th scope="col">rates</th>
                       <th scope="col">price</th>
@@ -69,6 +70,7 @@
                   <tbody>
                     <tr>
                       <th scope="row">{{ c.age }}</th>
+                      <td>{{ c.dni }}</td>
                       <td>{{ c.weight }}</td>
                       <td>{{ c.rates }}</td>
                       <td>{{ c.price }}</td>
@@ -194,6 +196,19 @@
                 <label for="floatingInput1">name</label>
                 <span style="color: aliceblue" v-if="errors.name">
                   {{ errors.name }}</span
+                >
+              </div>
+              <div id="inpus" class="form-floating mb-3">
+                <input
+                  type="text"
+                  name="dni"
+                  v-model="form.dni"
+                  class="form-control"
+                  id="floatingInput1"
+                />
+                <label for="floatingInput1">dni</label>
+                <span style="color: aliceblue" v-if="errors.dni">
+                  {{ errors.dni }}</span
                 >
               </div>
               <div id="inpus" class="form-floating mb-3">
@@ -490,6 +505,19 @@
               </div>
               <div id="inpus" class="form-floating mb-3">
                 <input
+                  type="text"
+                  name="dni"
+                  v-model="form.dni"
+                  class="form-control"
+                  id="floatingInput1-edit"
+                />
+                <label for="floatingInput1-edit">dni</label>
+                <span style="color: aliceblue" v-if="errors.dni">
+                  {{ errors.dni }}</span
+                >
+              </div>
+              <div id="inpus" class="form-floating mb-3">
+                <input
                   type="email"
                   name="email"
                   v-model="form.email"
@@ -752,6 +780,7 @@ export default {
         image: "",
         name: "",
         age: "",
+        dni: "",
         weight: "",
         nivel: "",
         email: "",
@@ -833,7 +862,9 @@ export default {
           // }
         );
 
-        this.clients = rs.data.clients_list;
+        this.mostrar_datos  = rs.data.clients_list;
+        this.clients = this.mostrar_datos
+
       } catch (e) {
         console.log(e);
       }

@@ -17,6 +17,11 @@
 img{
   width: 60px;
 }
+#ftto{
+  width: 230px;
+  margin-left: 3rem;
+  font-size: 1.1rem;
+}
 
 .cardHeader {
   display: flex;
