@@ -9,7 +9,34 @@
               <span class="overly"></span>
 
               <div class="card-image">
-                <img :src="axios.defaults.baseURL + r.image" alt="" class="card-img">
+
+                <div class="imgBx">
+            <!-- <img id="image" :src="c.image" class="img-fluid rounded-start" alt="..." /> -->
+
+            <!-- Image client exist and is not loading a new image -->
+            <img
+              v-if="r.image && !r.url"
+              :src="axios.defaults.baseURL + r.image"
+              class="image-profile"
+              :id="'client' + r.id"
+            />
+            <!-- Image client exist and uploaded a new image -->
+            <img
+              v-if="r.url && !loading"
+              :src="r.url"
+              class="image-profile"
+              :id="'client' + r.id"
+            />
+
+            <!-- Image client not exist and is not loading a new image -->
+            <span
+              v-if="!r.image && !loading"
+              :id="'client' + r.id"
+              class="person_icon material-symbols-outlined default-profile"
+            >
+              account_circle
+            </span>
+          </div>
               </div>
             </div>
             <div class="card-content">
@@ -128,11 +155,14 @@ export default {
 
       try {
         let rs = await this.axios.get(
-          `/api/clients/?companies_id=${companies_id}`
+          `/api/clients/?companies_id=${companies_id}`, this.form,
 
-          // {
-          //   headers: { Authorization: "Bearer " + this.token },
-          // }
+          {
+            headers: {
+              //  Authorization: "Bearer " + localStorage.token,
+              "Content-Type": "multipart/form-data", //Permite enviar imágenes
+            },
+          }
         );
 
         this.restor = rs.data.delete_list;

@@ -101,9 +101,11 @@
 
 
 .person_icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: whitesmoke;
-  font-size: 4rem;
-  z-index: 10;
+  font-size: 9rem;
 }
 
 
@@ -167,6 +169,7 @@
   left: 50%;
   width: 500px;
   height: 150px;
+  z-index: -10;
   transform: translate(-50%, -50%);
   background: linear-gradient(
     transparent,
@@ -191,12 +194,13 @@
   position: absolute;
   inset: 3px;
   background: #292929;
+  z-index: -10;
 }
 .car .imgBx img {
   position: absolute;
   top: 10px;
   left: 15px;
-  z-index: 1;
+
   width: calc(100% - 30px);
   height: calc(100% - 20px);
 }
@@ -221,7 +225,7 @@
 .car .content .details h2 span {
   font-size: 0.75em;
   font-weight: 700px;
-  color: #000;
+ 
 }
 .car .content .details .data {
   display: flex;

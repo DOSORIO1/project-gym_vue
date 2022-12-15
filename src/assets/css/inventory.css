@@ -13,6 +13,7 @@
     height: 100%;
 }
 .card{
+  position: relative;
     height: 400px;
     margin: 12px;
 }
@@ -34,24 +35,33 @@
     margin: 12px;
 }
 #span2{
-    display: flex;
-    flex-flow: row;
-    justify-content: space-around;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  margin-left: 10rem;
+  
 }
 .material-symbols-outlined{
     display: flex;
     flex-flow: column;
     align-items: center;
-    font-size: 150px;
-    border: 1px solid rebeccapurple;
+    font-size: 180px;
+  
 
 }
 #editar{
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
   height: 35px;
   width: 35px;
+  margin: 10px;
+ 
 }
 .imagenes{
-  height: 100%;
+  width: 287px;
+ 
  }
 /* ///////////////////////////////////////////////////////////////////////// */
 .img-fluid {
